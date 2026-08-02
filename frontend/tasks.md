@@ -40,34 +40,33 @@
 
 ### Phase 2: Architecture Layout & Module Scaffolding
 
-- [ ] **Feature-Driven Domain Layout Setup**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-06
+- [x] **Feature-Driven Domain Layout Setup**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-02
   - **Description**: Scaffold the modular `features/` directory to ensure high domain isolation across application boundaries.
   - **Steps**:
-    - [ ] Scaffold `features/auth/` (components, actions, types, utils)
-    - [ ] Scaffold `features/overview/` (components, actions, types, utils)
-    - [ ] Scaffold `features/transactions/` (components, actions, types, utils)
-    - [ ] Scaffold `features/budgets/` (components, actions, types, utils)
-    - [ ] Scaffold `features/pots/` (components, actions, types, utils)
-    - [ ] Scaffold `features/recurring-bills/` (components, actions, types, utils)
+    - [x] Scaffold `features/auth/` (components, actions, types, utils)
+    - [x] Scaffold `features/overview/` (components, actions, types, utils)
+    - [x] Scaffold `features/transactions/` (components, actions, types, utils)
+    - [x] Scaffold `features/budgets/` (components, actions, types, utils)
+    - [x] Scaffold `features/pots/` (components, actions, types, utils)
+    - [x] Scaffold `features/recurring-bills/` (components, actions, types, utils)
+    - [x] Scaffold `features/chatbot/` (components, actions, types, utils)
 
-- [ ] **Infrastructure Layer Scaffolding**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-06
+- [x] **Infrastructure Layer Scaffolding**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-02
   - **Description**: Setup central API communication modules and server session/cookie management hooks.
   - **Steps**:
-    - [ ] Scaffold `infra/api/` HTTP fetch wrapper with header/auth propagation
-    - [ ] Scaffold `infra/auth/` cookie extraction and token parsing helpers for SSR
+    - [x] Scaffold `infra/api/` HTTP fetch wrapper with header/auth propagation
+    - [x] Scaffold `infra/auth/` cookie extraction and token parsing helpers for SSR
 
-- [ ] **Shared Component & Utility Shell Scaffolding**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-07
+- [x] **Shared Component & Utility Shell Scaffolding**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-02
   - **Description**: Establish reusable UI component primitives, formatting tools, and baseline design tokens.
   - **Steps**:
-    - [ ] Scaffold `shared/components/ui/` directory for base UI elements
-    - [ ] Scaffold `shared/components/layout/` for navigation and page wrappers
-    - [ ] Scaffold `shared/utils/` for currency/date formatters and class merge helpers
+    - [x] Scaffold `shared/utils/` for currency/date formatters and class merge helpers
 
 - [ ] **App Router Shells & Streaming Fallbacks**
   - **Status**: ⏳ Todo
