@@ -1,0 +1,23 @@
+# .github/labeler.yml
+"area: frontend":
+  - changed-files:
+      - any-glob-to-any-file: "frontend/**/*"
+
+"area: backend":
+  - changed-files:
+      - any-glob-to-any-file: "backend/**/*"
+
+"ci/infra":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**/*"
+          - "Taskfile.yml"
+          - "Dockerfile*"
+          - "docker-compose*"
+
+"docs":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "*.md"
+          - "**/README.md"
+          - "**/tasks.md"
