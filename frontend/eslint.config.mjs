@@ -42,13 +42,11 @@ const eslintConfig = defineConfig([
         {
           type: "feature",
           pattern: "features/*",
-          mode: "folder",
           capture: ["featureName"],
         },
         {
           type: "shared",
           pattern: "shared/*",
-          mode: "folder",
           capture: ["moduleName"],
         },
         {
@@ -70,11 +68,10 @@ const eslintConfig = defineConfig([
         "error",
         {
           default: "allow",
-          rules: [
+          policies: [
             {
               from: { type: "feature" },
               disallow: { to: { type: "feature" } },
-
               message:
                 'Cross-feature contamination: "{{from.captured.featureName}}" cannot import from "{{to.captured.featureName}}".',
             },
