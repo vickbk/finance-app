@@ -22,7 +22,7 @@
     - [ ] Configure `app/globals.css` and font loading strategies (`next/font`)
 
 - [x] **Code Quality & Linter Tooling**
-  - **Status**: 🚀 Done
+  - **Status**: ✅ Done
   - **Target**: 2026-08-02
   - **Description**: Setup code formatting rules, linter presets, and git execution standards.
   - **Steps**:
@@ -30,13 +30,13 @@
     - [x] Configure `.prettierrc` for consistent formatting
     - [x] Define `.gitignore` for Next.js build artifacts and environment files
 
-- [ ] **Isolated Environment System Setup**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-05
+- [x] **Isolated Environment System Setup**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-02
   - **Description**: Define the environment contract and variables interface for local and production builds.
   - **Steps**:
-    - [ ] Create `frontend/.env.example` template with API target URLs and public keys
-    - [ ] Create type-safe environment configuration schema parser (`infra/config`)
+    - [x] Create `frontend/.env.local.example` template with API target URLs and public keys
+    - [x] Create type-safe environment configuration schema parser (`infra/config`)
 
 ### Phase 2: Architecture Layout & Module Scaffolding
 
