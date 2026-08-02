@@ -3,7 +3,7 @@ import { Config } from "../types";
 
 beforeEach(() => {
   vi.resetModules();
-  delete process.env.FRANKFURTER_URL;
+  delete process.env.BACKEND_URL;
   delete process.env.AI_PROVIDER_KEY;
   delete process.env.AUTH_SECRET;
   delete process.env.AUTH_GOOGLE_ID;
@@ -16,11 +16,11 @@ describe("Client Environment", () => {
     let hasThrown = false;
     try {
       const { config } = await import("./env");
-      console.log(config.FRANKFURTER_URL);
+      console.log(config.AUTH_SECRET);
     } catch (err: unknown) {
       hasThrown = true;
       expect((err as Error).message).toBe(
-        "Attempted to access server-side environment variable FRANKFURTER_URL from a Client Component.",
+        "Attempted to access server-side environment variable AUTH_SECRET from a Client Component.",
       );
     }
 
@@ -41,12 +41,12 @@ describe("Server Enviroment check", () => {
     vi.unstubAllGlobals();
   });
 
-  test("throws if FRANKFURTER_URL is missing on server side", async () => {
+  test("throws if BACKEND_URL is missing on server side", async () => {
     try {
       const { config } = await import("./env");
-      console.log(config.FRANKFURTER_URL);
+      console.log(config.BACKEND_URL);
     } catch (err: unknown) {
-      expect((err as Error).message).toMatch(/FRANKFURTER_URL is required/i);
+      expect((err as Error).message).toMatch(/BACKEND_URL is required/i);
     }
   });
 
@@ -54,8 +54,7 @@ describe("Server Enviroment check", () => {
     initConfig();
     const { config } = await import("./env");
 
-    expect(config.FRANKFURTER_URL).toBe("http://test_frankfurter_url");
-    expect(config.AI_PROVIDER_KEY).toBe("test_ai_key");
+    expect(config.BACKEND_URL).toBe("http://test_backend_url");
     expect(config.AUTH_SECRET).toBe("test_auth_secret");
     expect(config.AUTH_GOOGLE_ID).toBe("test_google_id");
     expect(config.AUTH_GOOGLE_SECRET).toBe("test_google_secret");
@@ -71,14 +70,11 @@ describe("Server Enviroment check", () => {
 });
 
 function initConfig(conf: Partial<Config> = {}) {
-  process.env.FRANKFURTER_URL = "http://test_frankfurter_url";
-  process.env.TMDB_API_KEY = "test_tmdb_key";
-  process.env.AI_PROVIDER_KEY = "test_ai_key";
+  process.env.BACKEND_URL = "http://test_backend_url";
   process.env.AUTH_SECRET = "test_auth_secret";
   process.env.AUTH_GOOGLE_ID = "test_google_id";
   process.env.AUTH_GOOGLE_SECRET = "test_google_secret";
   process.env.NEXT_PUBLIC_APP_URL = "http://localhost:3000";
-  process.env.DATABASE_URL = "test_db_url";
   process.env.GOOGLE_GENERATIVE_AI_API_KEY = "test_generative_key";
 
   Object.keys(conf).forEach(

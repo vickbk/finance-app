@@ -10,7 +10,7 @@ const getServerConfig = (): Config => {
   const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
 
   const parsed = configSchema.safeParse({
-    FRANKFURTER_URL: buildRequired(isBuildPhase, process.env.FRANKFURTER_URL),
+    BACKEND_URL: buildRequired(isBuildPhase, process.env.BACKEND_URL),
     AUTH_SECRET: buildRequired(isBuildPhase, process.env.AUTH_SECRET),
     AUTH_GOOGLE_ID: buildRequired(isBuildPhase, process.env.AUTH_GOOGLE_ID),
     AUTH_GOOGLE_SECRET: buildRequired(
@@ -18,10 +18,6 @@ const getServerConfig = (): Config => {
       process.env.AUTH_GOOGLE_SECRET,
     ),
     AI_PROVIDER_KEY: buildRequired(isBuildPhase, process.env.AI_PROVIDER_KEY),
-    DATABASE_URL: buildRequired(isBuildPhase, process.env.DATABASE_URL),
-    DATABASE_MAX_CONNECTIONS: process.env.DATABASE_MAX_CONNECTIONS
-      ? parseInt(process.env.DATABASE_MAX_CONNECTIONS, 10)
-      : undefined,
     GOOGLE_GENERATIVE_AI_API_KEY: buildRequired(
       isBuildPhase,
       process.env.GOOGLE_GENERATIVE_AI_API_KEY,
