@@ -17,16 +17,16 @@
   - **Target**: 2026-08-04
   - **Description**: Establish isolated environment management with strict runtime schema validation.
   - **Steps**:
-    - [ ] Create `backend/.env.example` template with Neon DB credentials, JWT secrets, and server ports
-    - [ ] Implement environment config loader in `infra/config/` using `viper` or `envconfig`
-    - [ ] Implement startup validation to prevent server initialization on missing environment variables
+    - [x] Create `backend/.env.example` template with Neon DB credentials, JWT secrets, and server ports
+    - [x] Implement environment config loader in `shared/config/` using `dotenv`
+    - [x] Implement startup validation to prevent server initialization on missing environment variables
 
 - [ ] **Developer Tooling & Hot-Reloading**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-05
+  - **Status**: ⌛ Done
+  - **Target**: 2026-08-02
   - **Description**: Configure Air for live-reloading during local development and set up Go linter rules.
   - **Steps**:
-    - [ ] Create `.air.toml` configuration file tuned for Fiber server hot-reloading
+    - [x] Create `.air.toml` configuration file tuned for Fiber server hot-reloading
     - [ ] Configure `.golangci.yml` for static analysis and code quality checks
 
 ### Phase 2: Database Layer & Persistence Engine (Neon DB + GORM)
@@ -36,9 +36,9 @@
   - **Target**: 2026-08-06
   - **Description**: Configure GORM connection pooling connected to external Neon serverless PostgreSQL.
   - **Steps**:
-    - [ ] Implement GORM connection pool loader in `infra/database/postgres.go`
-    - [ ] Configure SSL/TLS parameters and connection lifecycle limits for Neon serverless pooling
-    - [ ] Implement database ping and health check verification routines
+    - [x] Implement GORM connection pool loader in `infra/db/connect.go`
+    - [x] Configure SSL/TLS parameters and connection lifecycle limits for Neon serverless pooling
+    - [x] Implement database ping and health check verification routines
 
 - [ ] **Schema Migrations & Database Seeding**
   - **Status**: ⏳ Todo
