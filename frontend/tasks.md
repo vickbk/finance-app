@@ -68,19 +68,19 @@
   - **Steps**:
     - [x] Scaffold `shared/utils/` for currency/date formatters and class merge helpers
 
-- [ ] **App Router Shells & Streaming Fallbacks**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-07
+- [x] **App Router Shells & Streaming Fallbacks**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-02
   - **Description**: Setup top-level route segments, global error boundaries, and streaming loading states.
   - **Steps**:
-    - [ ] Scaffold root layout (`app/layout.tsx`) and route route segment folders
-    - [ ] Scaffold global streaming fallback boundary (`app/loading.tsx`)
-    - [ ] Scaffold root error boundary handler (`app/error.tsx` and `app/not-found.tsx`)
+    - [x] Scaffold root layout (`app/layout.tsx`) and route route segment folders
+    - [x] Scaffold global streaming fallback boundary (`app/loading.tsx`)
+    - [x] Scaffold root error boundary handler (`app/error.tsx` and `app/not-found.tsx`)
 
 ### Phase 3: Testing Infrastructure Setup (`tests/`)
 
-- [ ] **Unit & Component Testing Engine (Vitest)**
-  - **Status**: ⏳ Doing
+- [x] **Unit & Component Testing Engine (Vitest)**
+  - **Status**: ✅ Done
   - **Target**: 2026-08-02
   - **Description**: Scaffold the `tests/` directory and configure Vitest and React Testing Library for fast component unit tests.
   - **Steps**:
