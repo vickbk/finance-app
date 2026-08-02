@@ -80,22 +80,22 @@
 ### Phase 3: Testing Infrastructure Setup (`tests/`)
 
 - [ ] **Unit & Component Testing Engine (Vitest)**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-08
+  - **Status**: ⏳ Doing
+  - **Target**: 2026-08-02
   - **Description**: Scaffold the `tests/` directory and configure Vitest and React Testing Library for fast component unit tests.
   - **Steps**:
-    - [ ] Install Vitest, `@testing-library/react`, and `@testing-library/jest-dom`
-    - [ ] Create `vitest.config.ts` with Next.js path alias resolution
-    - [ ] Initialize `tests/unit/` directory structure and setup test environment mocks
+    - [x] Install Vitest, `@testing-library/react`, and `@testing-library/happy-dom`
+    - [x] Create `vitest.config.ts` with Next.js path alias resolution
+    - [x] Initialize `tests/vitest/` directory structure and setup test environment mocks
 
-- [ ] **End-to-End Testing Engine (Playwright)**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-09
+- [x] **End-to-End Testing Engine (Playwright)**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-02
   - **Description**: Configure Playwright for automated browser testing across viewport breakpoints.
   - **Steps**:
-    - [ ] Install and initialize Playwright framework
-    - [ ] Create `playwright.config.ts` configured for desktop, tablet, and mobile testing
-    - [ ] Initialize `tests/e2e/` directory structure with base smoke-test setup
+    - [x] Install and initialize Playwright framework
+    - [x] Create `playwright.config.ts` configured for desktop, tablet, and mobile testing
+    - [x] Initialize `tests/playwright/e2e/` directory structure with base smoke-test setup
 
 - [ ] **Test Utilities & API Mocking Setup**
   - **Status**: ⏳ Todo
