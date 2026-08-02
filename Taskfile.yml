@@ -1,0 +1,68 @@
+version: "3"
+
+# Global environment file configuration
+dotenv: [".env"]
+
+vars:
+  FRONTEND_DIR: frontend
+  BACKEND_DIR: backend
+
+tasks:
+  default:
+    desc: List all available tasks
+    cmds:
+      - task -l
+
+  # ---------------------------------------------------------------------------
+  # Development Tasks
+  # ---------------------------------------------------------------------------
+  dev:
+    desc: Start both Next.js frontend and Go backend concurrently
+    deps:
+      - dev:frontend
+      - dev:backend
+
+  dev:frontend:
+    desc: Start Next.js development server
+    dir: "{{.FRONTEND_DIR}}"
+    cmds:
+      - pnpm dev
+
+  dev:backend:
+    desc: Start Go Fiber server with Air hot-reload
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - air
+
+  # ---------------------------------------------------------------------------
+  # Build & Quality Assurance
+  # ---------------------------------------------------------------------------
+  build:
+    desc: Build both frontend and backend for production
+    cmds:
+      - task: build:frontend
+      - task: build:backend
+
+  build:frontend:
+    dir: "{{.FRONTEND_DIR}}"
+    cmds:
+      - pnpm build
+
+  build:backend:
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - go build -o bin/server ./cmd/server
+
+  test:
+    desc: Run unit and integration tests across both frontend and backend
+    cmds:
+      - echo "Running Frontend Tests..."
+      - cd {{.FRONTEND_DIR}} && pnpm test
+      - echo "Running Backend Tests..."
+      - cd {{.BACKEND_DIR}} && go test -v ./...
+
+  lint:
+    desc: Run linter checks on both codebases
+    cmds:
+      - cd {{.FRONTEND_DIR}} && pnpm lint
+      - cd {{.BACKEND_DIR}} && golangci-lint run
