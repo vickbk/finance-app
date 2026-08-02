@@ -1,0 +1,11 @@
+export type Config = Record<
+  | "AUTH_SECRET"
+  | "AUTH_GOOGLE_ID"
+  | "AUTH_GOOGLE_SECRET"
+  | "GEMINI_VERSION"
+  | "GOOGLE_GENERATIVE_AI_API_KEY"
+  | "BACKEND_URL"
+  | "NEXT_PUBLIC_APP_URL"
+  | "NEXT_PUBLIC_CHATBOT_STORAGE_KEY",
+  string
+>;
