@@ -6,5 +6,6 @@ type Params struct {
 	DB_NAME,
 	DB_USER,
 	DB_PASSWORD,
+	APP_PORT,
 	JWT_SECRET string
 }

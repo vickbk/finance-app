@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	port := config.EnvGet("PORT", "8080")
+	port := config.ENV.APP_PORT
 	portInt, err := strconv.Atoi(port)
 	if err != nil {
 		slog.Error("Error converting port to integer")
