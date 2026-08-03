@@ -51,11 +51,17 @@ jobs:
         if: ${{ !cancelled() }}
         id: coverage
         run: |
-          if [ -f frontend/coverage/coverage-summary.json ]; filename
-          then
-            # Extract coverage percentages using node
+          SUMMARY_FILE="coverage/coverage-summary.json"
+
+          if [ ! -f "$SUMMARY_FILE" ]; then
+            SUMMARY_FILE="./coverage/coverage-summary.json"
+          fi
+
+          if [ -f "$SUMMARY_FILE" ]; then
+            echo "Found coverage file at $SUMMARY_FILE"
+            
             SUMMARY=$(node -e '
-              const s = require("./frontend/coverage/coverage-summary.json").total;
+              const s = require("' "$SUMMARY_FILE" '").total;
               console.log(`| Statements | ${s.statements.pct}% (${s.statements.covered}/${s.statements.total}) |`);
               console.log(`| Branches | ${s.branches.pct}% (${s.branches.covered}/${s.branches.total}) |`);
               console.log(`| Functions | ${s.functions.pct}% (${s.functions.covered}/${s.functions.total}) |`);
