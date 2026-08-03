@@ -10,17 +10,15 @@ import (
 	"gorm.io/gorm"
 )
 
-
-
 var DB *gorm.DB
 
 func init() {
 	DB = Connect(Params{
-		Host:     config.Env["DB_HOST"],
-		Port:     config.Env["DB_PORT"],
-		Name:     config.Env["DB_NAME"],
-		User:     config.Env["DB_USER"],
-		Password: config.Env["DB_PASSWORD"],
+		Host:     config.ENV.DB_HOST,
+		Port:     config.ENV.DB_PORT,
+		Name:     config.ENV.DB_NAME,
+		User:     config.ENV.DB_USER,
+		Password: config.ENV.DB_PASSWORD,
 	})
 }
 

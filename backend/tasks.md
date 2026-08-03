@@ -12,9 +12,9 @@
     - [x] Configure Fiber instance with panic recovery, request ID, and logger middleware
     - [x] Implement graceful shutdown handling for SIGINT/SIGTERM signals
 
-- [ ] **Isolated Environment & Configuration System**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-04
+- [x] **Isolated Environment & Configuration System**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-02
   - **Description**: Establish isolated environment management with strict runtime schema validation.
   - **Steps**:
     - [x] Create `backend/.env.example` template with Neon DB credentials, JWT secrets, and server ports
@@ -22,7 +22,7 @@
     - [x] Implement startup validation to prevent server initialization on missing environment variables
 
 - [ ] **Developer Tooling & Hot-Reloading**
-  - **Status**: ⌛ Done
+  - **Status**: ⌛ Todo
   - **Target**: 2026-08-02
   - **Description**: Configure Air for live-reloading during local development and set up Go linter rules.
   - **Steps**:
@@ -31,22 +31,14 @@
 
 ### Phase 2: Database Layer & Persistence Engine (Neon DB + GORM)
 
-- [ ] **Neon PostgreSQL Connection Pool & GORM Setup**
-  - **Status**: ⏳ Todo
+- [x] **Neon PostgreSQL Connection Pool & GORM Setup**
+  - **Status**: ✅ Done
   - **Target**: 2026-08-06
   - **Description**: Configure GORM connection pooling connected to external Neon serverless PostgreSQL.
   - **Steps**:
     - [x] Implement GORM connection pool loader in `infra/db/connect.go`
     - [x] Configure SSL/TLS parameters and connection lifecycle limits for Neon serverless pooling
     - [x] Implement database ping and health check verification routines
-
-- [ ] **Schema Migrations & Database Seeding**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-06
-  - **Description**: Configure automated GORM auto-migrations and seed entrypoint for development data.
-  - **Steps**:
-    - [ ] Setup GORM auto-migration engine in `infra/database/migrate.go`
-    - [ ] Implement database seeding entrypoint in `cmd/seed/main.go` for initial platform setup
 
 ### Phase 3: Middleware & Core Response Utilities
 
@@ -68,24 +60,16 @@
 
 ### Phase 4: Domain Architecture & Package Scaffolding (`internal/`)
 
-- [ ] **Internal Feature Package Scaffolding**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-08
+- [x] **Internal Feature Package Scaffolding**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-03
   - **Description**: Establish modular package boundaries inside `internal/` using the handler-service-repository pattern.
   - **Steps**:
-    - [ ] Scaffold `internal/auth/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
-    - [ ] Scaffold `internal/transactions/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
-    - [ ] Scaffold `internal/budgets/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
-    - [ ] Scaffold `internal/pots/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
-    - [ ] Scaffold `internal/bills/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
-
-- [ ] **Fiber API Router Assembly**
-  - **Status**: ⏳ Todo
-  - **Target**: 2026-08-09
-  - **Description**: Mount feature handlers to versioned Fiber API route groups.
-  - **Steps**:
-    - [ ] Setup root router group (`/api/v1`)
-    - [ ] Wire domain sub-routers (`/v1/auth`, `/v1/transactions`, `/v1/budgets`, `/v1/pots`, `/v1/recurring-bills`)
+    - [x] Scaffold `internal/auth/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
+    - [x] Scaffold `internal/transactions/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
+    - [x] Scaffold `internal/budgets/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
+    - [x] Scaffold `internal/pots/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
+    - [x] Scaffold `internal/bills/` (`handler.go`, `service.go`, `repository.go`, `models.go`)
 
 ### Phase 5: Testing Harness Infrastructure
 
