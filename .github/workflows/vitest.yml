@@ -61,7 +61,7 @@ jobs:
             echo "Found coverage file at $SUMMARY_FILE"
             
             SUMMARY=$(node -e '
-              const s = require("'"$SUMMARY_FILE"'").total;
+              const s = require(path.resolve(import.meta.dirname, "'"$SUMMARY_FILE"'")).total;
               console.log(`| Statements | ${s.statements.pct}% (${s.statements.covered}/${s.statements.total}) |`);
               console.log(`| Branches | ${s.branches.pct}% (${s.branches.covered}/${s.branches.total}) |`);
               console.log(`| Functions | ${s.functions.pct}% (${s.functions.covered}/${s.functions.total}) |`);
