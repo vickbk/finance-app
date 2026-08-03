@@ -12,7 +12,7 @@ func TestInitialize_SystemEnvironmentVariables(t *testing.T) {
 	t.Setenv("DB_PORT", "5432")
 	t.Setenv("DB_NAME", "sys_db")
 	t.Setenv("DB_USER", "sys_user")
-	t.Setenv("DB_PASSWORD", "sys_pass")
+	t.Setenv("DB_PASSWORD", "test_pass")
 	t.Setenv("JWT_SECRET", "sys_jwt_secret")
 
 	// Trigger initialization targeting a non-existent .env file
@@ -54,7 +54,6 @@ JWT_SECRET=file_jwt_secret
 		}
 		os.Unsetenv(k)
 	}
-
 
 	// 3. Execute initialize using the temp file
 	initialize(envPath)
