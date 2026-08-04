@@ -9,9 +9,8 @@ import (
 
 func main() {
 	ctx, stop := server.SetupContext()
-	defer stop()
 
-	if err := server.Run(ctx); err != nil {
+	if err := server.Run(ctx, stop); err != nil {
 		slog.Error("Application startup failed", "error", err)
 		os.Exit(1)
 	}

@@ -6,6 +6,7 @@ import (
 	"testing"
 )
 
+// ENV holds the configuration parameters for the application, initialized from environment variables.
 var ENV = Params{}
 
 func init() {

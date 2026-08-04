@@ -35,11 +35,11 @@ jobs:
             - name: Install dependencies
               run: go mod download
 
-            # - name: Run linter
-            #   uses: golangci/golangci-lint-action@v6
-            #   with:
-            #       version: v1.60.1
-            #       working-directory: backend
+            - name: Run linter
+              uses: golangci/golangci-lint-action@v6
+              with:
+                  version: v2
+                  working-directory: backend
 
             - name: Run unit & integration tests with coverage
               run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...

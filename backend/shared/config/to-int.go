@@ -14,12 +14,19 @@ func EnvToInt(param string, defaultVal ...int) (int, error) {
 		if len(defaultVal) > 0 {
 			return defaultVal[0], nil
 		}
-		return 0, fmt.Errorf("environment variable %s is missing and no default value provided", param)
+		return 0, fmt.Errorf(
+			"environment variable %s is missing and no default value provided",
+			param,
+		)
 	}
 
 	i, err := strconv.Atoi(val)
 	if err != nil {
-		return 0, fmt.Errorf("environment variable %s has invalid integer value %q: %w", param, val, err)
+		return 0,
+			fmt.Errorf(
+				"environment variable %s has invalid integer value %q: %w",
+				param, val, err,
+			)
 	}
 
 	return i, nil

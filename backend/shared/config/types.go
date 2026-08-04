@@ -1,5 +1,6 @@
 package config
 
+// Params holds the configuration parameters for the application.
 type Params struct {
 	DB_HOST,
 	DB_PORT,

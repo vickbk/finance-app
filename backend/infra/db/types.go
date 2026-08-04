@@ -1,6 +1,6 @@
 package db
 
-type Params struct {
+type params struct {
 	User,
 	Password,
 	Name,

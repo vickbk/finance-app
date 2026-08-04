@@ -25,41 +25,41 @@ func getFreePort(t *testing.T) string {
 }
 
 func TestRunIntegration(t *testing.T) {
-	t.Run("full application lifecycle (startup, request handling, graceful shutdown)", func(t *testing.T) {
-		// Use ephemeral port 0 for parallel test isolation
-		t.Setenv("APP_PORT", getFreePort(t))
+	t.Run(
+		"full application lifecycle (startup, request handling, graceful shutdown)",
+		func(t *testing.T) {
+			t.Setenv("APP_PORT", getFreePort(t))
 
-		ctx, cancel := context.WithCancel(context.Background())
-		errChan := make(chan error, 1)
+			ctx, cancel := context.WithCancel(context.Background())
+			errChan := make(chan error, 1)
 
-		// Start application in background
-		go func() {
-			errChan <- Run(ctx)
-		}()
+			// Start application in background
+			go func() {
+				errChan <- Run(ctx, cancel)
+			}()
 
-		// Give the listener time to start
-		time.Sleep(100 * time.Millisecond)
+			// Give the listener time to start
+			time.Sleep(100 * time.Millisecond)
 
-		// Trigger graceful shutdown via context cancellation
-		cancel()
+			// Trigger graceful shutdown via context cancellation
+			cancel()
 
-		select {
-		case err := <-errChan:
-			if err != nil {
-				t.Errorf("expected clean application exit, got: %v", err)
+			select {
+			case err := <-errChan:
+				if err != nil {
+					t.Errorf("expected clean application exit, got: %v", err)
+				}
+			case <-time.After(2 * time.Second):
+				t.Fatal("application failed to exit within 2 seconds after context cancellation")
 			}
-		case <-time.After(2 * time.Second):
-			t.Fatal("application failed to exit within 2 seconds after context cancellation")
-		}
-	})
+		})
 
 	t.Run("fails fast on invalid port environment variable", func(t *testing.T) {
 		t.Setenv("APP_PORT", "invalid_port")
 
 		ctx, cancel := context.WithCancel(context.Background())
-		defer cancel()
 
-		err := Run(ctx)
+		err := Run(ctx, cancel)
 		if err == nil {
 			t.Fatal("expected Run() to fail with invalid APP_PORT, got nil error")
 		}
@@ -69,9 +69,8 @@ func TestRunIntegration(t *testing.T) {
 		t.Setenv("APP_PORT", "99999")
 
 		ctx, cancel := context.WithCancel(context.Background())
-		defer cancel()
 
-		err := Run(ctx)
+		err := Run(ctx, cancel)
 		if err == nil {
 			t.Fatal("expected Run() to fail for out-of-bounds port 99999, got nil error")
 		}
@@ -85,7 +84,7 @@ func TestRunIntegration(t *testing.T) {
 
 		errChan := make(chan error, 1)
 		go func() {
-			errChan <- Run(ctx)
+			errChan <- Run(ctx, stop)
 		}()
 
 		time.Sleep(100 * time.Millisecond)

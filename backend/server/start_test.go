@@ -7,7 +7,7 @@ import (
 
 func TestStart(t *testing.T) {
 	t.Run("returns error immediately when port is invalid", func(t *testing.T) {
-		app := SetupApp("Test Invalid Port")
+		app := setupApp("Test Invalid Port")
 
 		// -1 is an invalid port number
 		err := Start(app, -1)
@@ -17,7 +17,7 @@ func TestStart(t *testing.T) {
 	})
 
 	t.Run("starts listener on port 0 and unblocks cleanly on shutdown", func(t *testing.T) {
-		app := SetupApp("Test Start & Stop")
+		app := setupApp("Test Start & Stop")
 
 		errChan := make(chan error, 1)
 

@@ -21,13 +21,13 @@
     - [x] Implement environment config loader in `shared/config/` using `dotenv`
     - [x] Implement startup validation to prevent server initialization on missing environment variables
 
-- [ ] **Developer Tooling & Hot-Reloading**
-  - **Status**: ⌛ Todo
-  - **Target**: 2026-08-02
+- [x] **Developer Tooling & Hot-Reloading**
+  - **Status**: ✅ Done
+  - **Target**: 2026-08-04
   - **Description**: Configure Air for live-reloading during local development and set up Go linter rules.
   - **Steps**:
     - [x] Create `.air.toml` configuration file tuned for Fiber server hot-reloading
-    - [ ] Configure `.golangci.yml` for static analysis and code quality checks
+    - [x] Configure `.golangci.yml` for static analysis and code quality checks
 
 ### Phase 2: Database Layer & Persistence Engine (Neon DB + GORM)
 

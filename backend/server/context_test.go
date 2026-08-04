@@ -10,20 +10,22 @@ import (
 )
 
 func TestSetupContext(t *testing.T) {
-	t.Run("returns valid context and stop function with default background parent", func(t *testing.T) {
-		ctx, stop := SetupContext()
-		defer stop()
+	t.Run(
+		"returns valid context and stop function with default background parent",
+		func(t *testing.T) {
+			ctx, stop := SetupContext()
+			defer stop()
 
-		if ctx == nil {
-			t.Fatal("expected non-nil context")
-		}
+			if ctx == nil {
+				t.Fatal("expected non-nil context")
+			}
 
-		select {
-		case <-ctx.Done():
-			t.Fatal("context should not be closed immediately after initialization")
-		default:
-		}
-	})
+			select {
+			case <-ctx.Done():
+				t.Fatal("context should not be closed immediately after initialization")
+			default:
+			}
+		})
 
 	t.Run("canceling context via stop function", func(t *testing.T) {
 		ctx, stop := SetupContext()

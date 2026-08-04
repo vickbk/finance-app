@@ -37,7 +37,7 @@ func TestValidate(t *testing.T) {
 	if err == nil {
 		t.Fatal("expected error for privileged port 80, got nil")
 	}
-	if !errors.Is(err, ErrInvalidPort) {
+	if !errors.Is(err, errInvalidPort) {
 		t.Errorf("expected ErrInvalidPort, got %v", err)
 	}
 }

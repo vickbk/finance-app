@@ -1,0 +1,115 @@
+version: "2"
+
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+  issues-exit-code: 1
+  tests: true
+  relative-path-mode: gomod
+
+output:
+  formats:
+    text:
+      print-linter-name: true
+      print-issued-lines: true
+      colors: true
+
+linters:
+  default: none
+  enable:
+    # Core Quality
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+
+    # Style & Formatting
+    - revive
+    - misspell
+
+    # Bugs & Performance
+    - bodyclose
+    - noctx
+    - gocritic
+    - gosec
+    - sqlclosecheck
+    - durationcheck
+    - prealloc
+
+    # Testing Quality
+    - tparallel
+    - thelper
+
+  settings:
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
+
+    revive:
+      severity: warning
+      confidence: 0.8
+      rules:
+        - name: exported
+          disabled: false
+        - name: package-comments
+          disabled: true
+        - name: error-naming
+        - name: error-strings
+        - name: error-return
+        - name: unexported-return
+        - name: indent-error-flow
+        - name: blank-imports
+
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - style
+        - performance
+      disabled-checks:
+        - hugeParam
+        - whyNoLint
+
+    gosec:
+      severity: medium
+      confidence: medium
+
+    errcheck:
+      check-type-assertions: true
+      check-blank: true
+
+  exclusions:
+    rules:
+      # Relax strict checks for unit tests
+      - path: _test\.go
+        linters:
+          - errcheck
+          - gosec
+          - noctx
+          - gocritic
+
+      # Allow error variable shadowing
+      - text: 'shadow: declaration of "err" shadow declaration'
+        linters:
+          - govet
+
+formatters:
+  enable:
+    - gofmt
+    - gci
+    - golines
+
+  settings:
+    gofmt:
+      simplify: true
+
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/vickbk/finance-app/backend)
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

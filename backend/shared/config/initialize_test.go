@@ -143,7 +143,10 @@ func TestParams_Validate_UnifiedError(t *testing.T) {
 			if u, ok := err.(unwrapper); ok {
 				gotCount := len(u.Unwrap())
 				if gotCount != tt.wantCount {
-					t.Errorf("expected %d sub-errors, got %d. Errors: %v", tt.wantCount, gotCount, u.Unwrap())
+					t.Errorf(
+						"expected %d sub-errors, got %d. Errors: %v",
+						tt.wantCount, gotCount, u.Unwrap(),
+					)
 				}
 			} else {
 				t.Errorf("expected joined error implementing Unwrap() []error")

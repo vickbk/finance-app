@@ -4,7 +4,7 @@ import (
 	"github.com/gofiber/fiber/v3"
 )
 
-func SetupApp(name string) (app *fiber.App) {
+func setupApp(name string) (app *fiber.App) {
 	app = fiber.New(fiber.Config{
 		AppName: name,
 	})

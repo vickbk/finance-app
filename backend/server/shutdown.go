@@ -10,11 +10,14 @@ import (
 	"github.com/vickbk/defaults"
 )
 
-func Shutdown(app *fiber.App, ctx context.Context, timeout ...time.Duration) error {
+// shutdown gracefully shuts down the Fiber application when the context is canceled.
+func shutdown(app *fiber.App, ctx context.Context, timeout ...time.Duration) error {
 	<-ctx.Done()
 	slog.Info("Shutdown signal received, closing HTTP server...")
 
-	shutdownCtx, cancel := context.WithTimeout(context.Background(), defaults.Get(timeout, 5*time.Second))
+	shutdownCtx, cancel := context.WithTimeout(
+		context.Background(), defaults.Get(timeout, 5*time.Second),
+	)
 	defer cancel()
 
 	if err := app.ShutdownWithContext(shutdownCtx); err != nil {

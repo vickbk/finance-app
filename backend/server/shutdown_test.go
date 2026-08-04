@@ -29,7 +29,7 @@ func TestShutdown(t *testing.T) {
 
 		errChan := make(chan error, 1)
 		go func() {
-			errChan <- Shutdown(app, ctx, 100*time.Millisecond)
+			errChan <- shutdown(app, ctx, 100*time.Millisecond)
 		}()
 
 		// Trigger shutdown by canceling the context
@@ -52,7 +52,7 @@ func TestShutdown(t *testing.T) {
 
 		errChan := make(chan error, 1)
 		go func() {
-			errChan <- Shutdown(app, ctx, 50*time.Millisecond)
+			errChan <- shutdown(app, ctx, 50*time.Millisecond)
 		}()
 
 		select {

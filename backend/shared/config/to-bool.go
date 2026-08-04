@@ -17,12 +17,18 @@ func EnvToBool(param string, defaultVal ...bool) (bool, error) {
 		if len(defaultVal) > 0 {
 			return defaultVal[0], nil
 		}
-		return false, fmt.Errorf("environment variable %s is missing and no default value provided", param)
+		return false,
+			fmt.Errorf(
+				"environment variable %s is missing and no default value provided",
+				param,
+			)
 	}
 
 	b, err := strconv.ParseBool(val)
 	if err != nil {
-		return false, fmt.Errorf("environment variable %s has invalid boolean value %q: %w", param, val, err)
+		return false, fmt.Errorf("environment variable %s has invalid boolean value %q: %w",
+			param, val, err,
+		)
 	}
 
 	return b, nil

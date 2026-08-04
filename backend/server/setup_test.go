@@ -7,7 +7,7 @@ import (
 )
 
 func TestSetupApp(t *testing.T) {
-	app := SetupApp("Test App")
+	app := setupApp("Test App")
 
 	t.Run("returns 404 for undefined routes", func(t *testing.T) {
 		req := httptest.NewRequest(http.MethodGet, "/api/v1/non-existent", nil)
@@ -18,6 +18,10 @@ func TestSetupApp(t *testing.T) {
 
 		if resp.StatusCode != http.StatusNotFound {
 			t.Errorf("expected status %d, got %d", http.StatusNotFound, resp.StatusCode)
+		}
+
+		if err := resp.Body.Close(); err != nil {
+			t.Fatalf("failed to close response body: %v", err)
 		}
 	})
 }
