@@ -8,7 +8,7 @@ import (
 var ErrInvalidPort = errors.New("invalid port number")
 
 const (
-	MinPort = 1024  // Set to 1 if privileged ports (80, 443) should be permitted
+	MinPort = 1024 // Set to 1 if privileged ports (80, 443) should be permitted
 	MaxPort = 65535
 )
 
