@@ -42,6 +42,10 @@ jobs:
           runtime: node@24
           cache-dependency-path: "frontend/pnpm-lock.yaml"
           package-json-file: "frontend/package.json"
+          install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       # Cache Playwright browser binaries to save 2-3 minutes per run
       - name: Get Playwright version
