@@ -24,19 +24,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/setup@v1
         with:
           version: 11
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-          cache: "pnpm"
+          cache: true
+          runtime: node@24
           cache-dependency-path: "frontend/pnpm-lock.yaml"
+          package-json-file: "frontend/package.json"
+          install: false
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -86,7 +84,7 @@ jobs:
 
       - name: Post Coverage Comment on PR
         if: github.event_name == 'pull_request' && !cancelled()
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           header: frontend-coverage-report
           message: |
@@ -96,7 +94,7 @@ jobs:
             > View full breakdown in [Actions Step Summary](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
 
       - name: Upload HTML Coverage Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: frontend-coverage-report
