@@ -7,7 +7,7 @@ import (
 )
 
 func TestSetupApp(t *testing.T) {
-	app, _, _ := SetupApp("Test App")
+	app := SetupApp("Test App")
 
 	t.Run("returns 404 for undefined routes", func(t *testing.T) {
 		req := httptest.NewRequest(http.MethodGet, "/api/v1/non-existent", nil)
