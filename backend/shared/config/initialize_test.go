@@ -6,6 +6,10 @@ import (
 	"testing"
 )
 
+// Unpack joined errors to verify exact count
+
+type unwrapper interface{ Unwrap() []error }
+
 func TestInitialize_SystemEnvironmentVariables(t *testing.T) {
 	// t.Setenv automatically cleans up environment variables when the test finishes
 	t.Setenv("DB_HOST", "sys-db-host")
@@ -72,43 +76,58 @@ JWT_SECRET=file_jwt_secret
 func TestParams_Validate_UnifiedError(t *testing.T) {
 	tests := []struct {
 		name      string
-		params    Params
+		params    map[string]string
 		wantCount int
 	}{
 		{
 			name: "all valid - zero errors",
-			params: Params{
-				DB_HOST:     "localhost",
-				DB_PORT:     "5432",
-				DB_NAME:     "finance_db",
-				DB_USER:     "postgres",
-				DB_PASSWORD: "password",
-				JWT_SECRET:  "secret",
+			params: map[string]string{
+				"DB_HOST":     "localhost",
+				"DB_PORT":     "5432",
+				"DB_NAME":     "finance_db",
+				"DB_USER":     "postgres",
+				"DB_PASSWORD": "password",
+				"JWT_SECRET":  "secret",
 			},
 			wantCount: 0,
 		},
 		{
 			name: "missing two fields - returns joined error",
-			params: Params{
-				DB_HOST:     "",
-				DB_PORT:     "5432",
-				DB_NAME:     "finance_db",
-				DB_USER:     "postgres",
-				DB_PASSWORD: "password",
-				JWT_SECRET:  "",
+			params: map[string]string{
+				"DB_HOST":     "",
+				"DB_PORT":     "5432",
+				"DB_NAME":     "finance_db",
+				"DB_USER":     "postgres",
+				"DB_PASSWORD": "password",
+				"JWT_SECRET":  "",
 			},
 			wantCount: 2,
 		},
 		{
-			name:      "all missing fields - returns 6 joined errors",
-			params:    Params{},
+			name: "all missing fields - returns 6 joined errors",
+			params: map[string]string{
+				"DB_HOST":     "",
+				"DB_PORT":     "",
+				"DB_NAME":     "",
+				"DB_USER":     "",
+				"DB_PASSWORD": "",
+				"JWT_SECRET":  "",
+			},
 			wantCount: 6,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := tt.params.validateParams()
+			for k, v := range tt.params {
+				if v == "" {
+					os.Unsetenv(k)
+				} else {
+					os.Setenv(k, v)
+				}
+			}
+
+			err := initialize()
 
 			if tt.wantCount == 0 {
 				if err != nil {
@@ -121,12 +140,10 @@ func TestParams_Validate_UnifiedError(t *testing.T) {
 				t.Fatalf("expected error, got nil")
 			}
 
-			// Unpack joined errors to verify exact count
-			type unwrapper interface{ Unwrap() []error }
 			if u, ok := err.(unwrapper); ok {
 				gotCount := len(u.Unwrap())
 				if gotCount != tt.wantCount {
-					t.Errorf("expected %d sub-errors, got %d", tt.wantCount, gotCount)
+					t.Errorf("expected %d sub-errors, got %d. Errors: %v", tt.wantCount, gotCount, u.Unwrap())
 				}
 			} else {
 				t.Errorf("expected joined error implementing Unwrap() []error")

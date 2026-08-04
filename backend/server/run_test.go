@@ -90,14 +90,13 @@ func TestRunIntegration(t *testing.T) {
 
 		time.Sleep(100 * time.Millisecond)
 
-
 		proc, _ := os.FindProcess(os.Getpid())
 		if runtime.GOOS == "windows" {
 			return // Skip signal test on Windows as os.Interrupt behaves differently
 		} else if err := proc.Signal(syscall.SIGTERM); err != nil {
 			t.Fatalf("failed to send SIGTERM signal: %v", err)
 		}
-		
+
 		select {
 		case err := <-errChan:
 			if err != nil {

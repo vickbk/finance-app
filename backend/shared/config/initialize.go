@@ -3,12 +3,11 @@ package config
 import (
 	"log/slog"
 	"os"
-	"testing"
 
 	"github.com/joho/godotenv"
 )
 
-func initialize(env ...string) {
+func initialize(env ...string) error {
 	if err := godotenv.Load(env...); err != nil {
 		if os.IsNotExist(err) {
 			slog.Debug("No .env file found; relying on system environment variables")
@@ -18,21 +17,17 @@ func initialize(env ...string) {
 	}
 
 	ENV = Params{
-		DB_HOST:     getEnv("DB_HOST", ""),
-		DB_PORT:     getEnv("DB_PORT", "5432"),
-		DB_NAME:     getEnv("DB_NAME", ""),
-		DB_USER:     getEnv("DB_USER", ""),
-		DB_PASSWORD: getEnv("DB_PASSWORD", ""),
+		DB_HOST:     getEnv("DB_HOST"),
+		DB_PORT:     getEnv("DB_PORT"),
+		DB_NAME:     getEnv("DB_NAME"),
+		DB_USER:     getEnv("DB_USER"),
+		DB_PASSWORD: getEnv("DB_PASSWORD"),
 		APP_PORT:    getEnv("APP_PORT", "8080"),
-		JWT_SECRET:  getEnv("JWT_SECRET", ""),
-	}
-
-	if testing.Testing() {
-		return
+		JWT_SECRET:  getEnv("JWT_SECRET"),
 	}
 
 	if err := ENV.validateParams(); err != nil {
-		slog.Error("❌ Configuration Error", "errors", err)
-		os.Exit(1)
+		return err
 	}
+	return nil
 }
