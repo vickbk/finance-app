@@ -97,6 +97,10 @@ func TestErrorHandler(t *testing.T) {
 			if env.Meta != tt.expectedSlug {
 				t.Errorf("expected error code slug %q, got %q", tt.expectedSlug, env.Meta)
 			}
+
+			if env.Error.Code != tt.expectedCode {
+				t.Errorf("expected error code to be %d, got %d", tt.expectedCode,env.Error.Code)
+			}
 		})
 	}
 }

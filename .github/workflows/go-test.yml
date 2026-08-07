@@ -2,11 +2,15 @@ name: Go Test
 
 on:
     push:
-        branches: ["main"]
+        branches:
+            - main
+            - master
         paths:
             - "backend/**"
     pull_request:
-        branches: ["main"]
+        branches:
+            - main
+            - master
         paths:
             - "backend/**"
 
@@ -14,8 +18,11 @@ permissions:
     contents: read
     pull-requests: write # Required for posting PR coverage summary comments
 
+env:
+    TOTAL_COVERAGE: 0
 jobs:
     test:
+        timeout-minutes: 15
         runs-on: ubuntu-latest
         defaults:
             run:

@@ -2,17 +2,24 @@ name: Vitest Tests & Linting
 
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
+      - master
     paths:
       - "frontend/**"
   pull_request:
-    branches: [main, master]
+    branches:
+      - main
+      - master
     paths:
       - "frontend/**"
 
 permissions:
   contents: read
   pull-requests: write
+
+env:
+  TOTAL_PCT: 0
 
 jobs:
   test:

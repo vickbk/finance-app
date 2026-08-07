@@ -50,13 +50,13 @@
     - [ ] Implement `infra/middleware/cors.go` with explicit origin rules for Vercel/Localhost
     - [ ] Implement `infra/middleware/auth.go` for JWT parsing and user context injection
 
-- [ ] **Shared HTTP Envelopes & Error Handling**
-  - **Status**: ⏳ Todo
+- [x] **Shared HTTP Envelopes & Error Handling**
+  - **Status**: ✅ Done
   - **Target**: 2026-08-07
   - **Description**: Standardize API response formats and custom domain error handlers across all endpoints.
   - **Steps**:
     - [x] Implement standard JSON response envelopes (`success`, `data`, `meta`, `error`) in `shared/response/`
-    - [ ] Create centralized Fiber error handler catching custom application domain errors in `shared/errors/`
+    - [x] Create centralized Fiber error handler catching custom application domain errors in `shared/response/modules/errors/`
 
 ### Phase 4: Domain Architecture & Package Scaffolding (`internal/`)
 

@@ -12,7 +12,7 @@ func Error(c fiber.Ctx, code int, codeText, message string, details ...any) erro
 	c.Status(code)
 	slog.Error(codeText, "error", message, "details", defaults.Get(details, nil))
 	return c.JSON(APIResponse[any]{Success: false, Error: &APIError{
-		Code:    codeText,
+		Code:    code,
 		Message: message,
 	}, Meta: codeText})
 }
