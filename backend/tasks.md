@@ -55,7 +55,7 @@
   - **Target**: 2026-08-07
   - **Description**: Standardize API response formats and custom domain error handlers across all endpoints.
   - **Steps**:
-    - [ ] Implement standard JSON response envelopes (`success`, `data`, `meta`, `error`) in `shared/response/`
+    - [x] Implement standard JSON response envelopes (`success`, `data`, `meta`, `error`) in `shared/response/`
     - [ ] Create centralized Fiber error handler catching custom application domain errors in `shared/errors/`
 
 ### Phase 4: Domain Architecture & Package Scaffolding (`internal/`)
