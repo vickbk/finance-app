@@ -9,7 +9,7 @@ export default defineConfig({
     setupFiles: ["./tests/vitest/setup.ts"],
     globals: true,
     alias: {
-      "@": path.resolve(__dirname, "./"),
+      "@": path.resolve(import.meta.dirname, "./"),
     },
     exclude: [
       "**/node_modules/**",
@@ -17,5 +17,10 @@ export default defineConfig({
       "**/dist/**",
       "**/*.spec.ts",
     ],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json-summary", "html"],
+      reportsDirectory: "./coverage",
+    },
   },
 });

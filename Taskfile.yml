@@ -53,13 +53,50 @@ tasks:
     cmds:
       - go build -o bin/server ./cmd/server
 
+  # ---------------------------------------------------------------------------
+  # Testing Tasks
+  # ---------------------------------------------------------------------------
   test:
     desc: Run unit and integration tests across both frontend and backend
     cmds:
       - echo "Running Frontend Tests..."
-      - cd {{.FRONTEND_DIR}} && pnpm test
+      - cd {{.FRONTEND_DIR}} && pnpm test:run
       - echo "Running Backend Tests..."
       - cd {{.BACKEND_DIR}} && go test -v ./...
+
+  test:frontend:
+    desc: Run frontend unit and integration tests
+    dir: "{{.FRONTEND_DIR}}"
+    cmds:
+      - pnpm test
+
+  test:backend:
+    desc: Run backend unit and integration tests
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - go test -v ./...
+
+  test:coverage:
+    desc: Run tests and generate coverage reports for both frontend and backend
+    cmds:
+      - echo "Running Frontend Tests with Coverage..."
+      - cd {{.FRONTEND_DIR}} && pnpm test:run --coverage
+      - echo "Running Backend Tests with Coverage..."
+      - cd {{.BACKEND_DIR}} && go test -v -coverprofile=coverage -covermode=atomic ./... && go tool cover -html=coverage
+      - echo "Coverage reports generated for both frontend and backend."
+      - echo "Backend coverage report will open in your default browser. Frontend coverage report can be found in the 'coverage' directory of the frontend project. frontend/coverage/index.html"
+
+  test:coverage:frontend:
+    desc: Run frontend tests and generate coverage report
+    dir: "{{.FRONTEND_DIR}}"
+    cmds:
+      - pnpm test:run --coverage
+
+  test:coverage:backend:
+    desc: Run backend tests and generate coverage report
+    dir: "{{.BACKEND_DIR}}"
+    cmds:
+      - go test -v -coverprofile=coverage -covermode=atomic ./... && go tool cover -html=coverage
 
   lint:
     desc: Run linter checks on both codebases

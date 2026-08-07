@@ -1,0 +1,85 @@
+name: Go Test
+
+on:
+    push:
+        branches:
+            - main
+            - master
+        paths:
+            - "backend/**"
+    pull_request:
+        branches:
+            - main
+            - master
+        paths:
+            - "backend/**"
+
+permissions:
+    contents: read
+    pull-requests: write # Required for posting PR coverage summary comments
+
+env:
+    TOTAL_COVERAGE: 0
+jobs:
+    test:
+        timeout-minutes: 15
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./backend
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v7
+
+            - name: Set up Go
+              uses: actions/setup-go@v7
+              with:
+                  go-version-file: "backend/go.mod"
+                  cache: true
+                  cache-dependency-path: "backend/go.sum"
+
+            - name: Install dependencies
+              run: go mod download
+
+            - name: Run linter
+              uses: golangci/golangci-lint-action@v7
+              with:
+                  version: v2.12
+                  working-directory: backend
+
+            - name: Run unit & integration tests with coverage
+              run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
+
+            - name: Generate Coverage Report Summary
+              id: coverage
+              run: |
+                  # Calculate total coverage percentage
+                  TOTAL_COVERAGE=$(go tool cover -func=coverage.out | grep total | awk '{print $3}')
+                  echo "TOTAL_COVERAGE=${TOTAL_COVERAGE}" >> $GITHUB_ENV
+
+                  # Build Markdown table breakdown per function
+                  echo "## 📊 Go Test Coverage Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "### Total Coverage: \`${TOTAL_COVERAGE}\`" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "| Package / File | Function | Coverage |" >> $GITHUB_STEP_SUMMARY
+                  echo "| :--- | :--- | :--- |" >> $GITHUB_STEP_SUMMARY
+                  go tool cover -func=coverage.out | grep -v "total:" | awk '{print "| \`" $1 "\` | \`" $2 "\` | **" $3 "** |"}' >> $GITHUB_STEP_SUMMARY
+
+            - name: Post Coverage Comment on PR
+              if: github.event_name == 'pull_request'
+              uses: marocchino/sticky-pull-request-comment@v3
+              with:
+                  header: code-coverage-report
+                  message: |
+                      ## 📊 Backend Test Coverage Report
+                      **Overall Coverage:** `${{ env.TOTAL_COVERAGE }}`
+
+                      > Detailed coverage breakdown is available in the [Actions Step Summary](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+
+            - name: Upload Coverage Artifact
+              uses: actions/upload-artifact@v7
+              with:
+                  name: code-coverage-report
+                  path: backend/coverage.out
+                  retention-days: 14
