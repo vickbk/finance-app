@@ -99,7 +99,7 @@ func TestErrorHandler(t *testing.T) {
 			}
 
 			if env.Error.Code != tt.expectedCode {
-				t.Errorf("expected error code to be %d, got %d", tt.expectedCode,env.Error.Code)
+				t.Errorf("expected error code to be %d, got %d", tt.expectedCode, env.Error.Code)
 			}
 		})
 	}
