@@ -13,7 +13,7 @@ updates:
       all-updates:
         patterns:
           - "*"
-  - package-ecosystem: "go"
+  - package-ecosystem: "gomod"
     directory: "/backend"
     schedule:
       interval: "weekly"
