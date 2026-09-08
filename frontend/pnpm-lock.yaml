@@ -20,6 +20,9 @@ importers:
       react-dom:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
+      react-heading-manager:
+        specifier: ^0.3.0
+        version: 0.3.0(@playwright/test@1.62.1)(happy-dom@20.12.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -2521,6 +2524,19 @@ packages:
     resolution: {integrity: sha512-rVprimfGBG3DR+Tq0IQG2DT5PxKth1WIGDmj5yPmlzr4YBe7uyE+Du4oVqTDXZSHGGGXRtTJEGSSePyQCMBglQ==}
     peerDependencies:
       react: ^19.2.8
+
+  react-heading-manager@0.3.0:
+    resolution: {integrity: sha512-OHgiA5hyZvaMjtNyzusAQhrr3TpgD6WaTF89ZvG7Qg4/VyaZDHH+PhidiaVknjpuCSbkO3dzNCceAvzA+fZOGw==}
+    peerDependencies:
+      '@playwright/test': ^1.30.0
+      happy-dom: ^20.11.1
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@playwright/test':
+        optional: true
+      happy-dom:
+        optional: true
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -5428,6 +5444,14 @@ snapshots:
     dependencies:
       react: 19.2.8
       scheduler: 0.27.0
+
+  react-heading-manager@0.3.0(@playwright/test@1.62.1)(happy-dom@20.12.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+    dependencies:
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+    optionalDependencies:
+      '@playwright/test': 1.62.1
+      happy-dom: 20.12.2
 
   react-is@16.13.1: {}
 
