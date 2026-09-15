@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "happy-dom",
+    pool: "vmThreads",
     setupFiles: ["./tests/vitest/setup.ts"],
     globals: true,
     alias: {
