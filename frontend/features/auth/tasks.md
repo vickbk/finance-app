@@ -9,7 +9,7 @@
 - **Steps**:
   - [x] Create shared auth HTML template shell with responsive split-screen branding banner and central card container
   - [ ] Integrate core typography, CSS styling tokens, and accessible color contrast rules
-  - [x] Configure semantic landmarks (`<main>`, `<form>`, distinct `aria-labels`) for full screen-reader compliance
+  - [x] Configure semantic landmarks (`<form>`, distinct `aria-labels`) for full screen-reader compliance
 
 - [ ] **Signup View & Form Layout**
 - **Status**: ⏳ Todo

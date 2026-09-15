@@ -52,8 +52,8 @@ export const userTypes = async (
   target: string | RegExp,
   text: string,
   container?: HTMLElement,
+  user = userEvent.setup(),
 ) => {
-  const user = userEvent.setup();
   const regex = patternToRegex(target);
 
   const searchArea = getSearchArea(container);
@@ -65,6 +65,16 @@ export const userTypes = async (
   await user.clear(element);
   await user.type(element, text);
 };
+
+export async function userTypesMultiple(
+  inputs: Record<string, string>,
+  container?: HTMLElement,
+) {
+  const entries = Object.entries(inputs);
+  for (const [selector, value] of entries) {
+    await userTypes(selector, value, container);
+  }
+}
 
 function getRadioOrCheckboxAssertion(
   selector: TEXT_PATTERN,
