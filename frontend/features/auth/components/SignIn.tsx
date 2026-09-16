@@ -19,7 +19,12 @@ export function SignIn({ children }: { children: ReactNode }) {
     >
       <Input
         label="Email"
-        inputParams={{ name: "email", required: true, type: "email" }}
+        inputParams={{
+          name: "email",
+          required: true,
+          type: "email",
+          autoComplete: "email",
+        }}
       />
       <Input
         label="Password"

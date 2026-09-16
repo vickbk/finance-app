@@ -16,10 +16,18 @@ export function SignUp({ children }: { children: ReactNode }) {
       }}
       otherOptions={children}
     >
-      <Input label="Name" inputParams={{ name: "name", required: true }} />
+      <Input
+        label="Name"
+        inputParams={{ name: "name", required: true, autoComplete: "name" }}
+      />
       <Input
         label="Email"
-        inputParams={{ name: "email", required: true, type: "email" }}
+        inputParams={{
+          name: "email",
+          required: true,
+          type: "email",
+          autoComplete: "email",
+        }}
       />
       <Input
         label="Password"

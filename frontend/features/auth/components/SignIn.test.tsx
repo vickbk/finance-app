@@ -87,7 +87,7 @@ describe("SignIn Component", () => {
   });
 
   describe("Form Submission & Action Invocation", () => {
-    it("allows user typing and triggers signup action on submit", async () => {
+    it("allows user typing and triggers signin action on submit", async () => {
       renderSignIn();
 
       const { email, password } = await userTypesMultiple({
