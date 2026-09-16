@@ -1,22 +1,22 @@
+import Link from "next/link";
 import { ReactNode } from "react";
-import { signup } from "../actions";
+import { signin } from "../actions";
 import { CommonForm } from "../modules/layout";
 import { Input } from "./Input";
 
-export function SignUp({ children }: { children: ReactNode }) {
+export function SignIn({ children }: { children: ReactNode }) {
   return (
     <CommonForm
       formProps={{
-        title: "Sign Up",
-        action: signup,
+        title: "Login",
+        action: signin,
         submitButton: {
-          text: "Create Account",
-          loadingText: "Creating account...",
+          text: "Login",
+          loadingText: "Logging in...",
         },
       }}
       otherOptions={children}
     >
-      <Input label="Name" inputParams={{ name: "name", required: true }} />
       <Input
         label="Email"
         inputParams={{ name: "email", required: true, type: "email" }}
@@ -24,7 +24,11 @@ export function SignUp({ children }: { children: ReactNode }) {
       <Input
         label="Password"
         inputParams={{ name: "password", required: true, type: "password" }}
-        hint={<span>Password must be at least 8 characters</span>}
+        hint={
+          <span>
+            Forgot password? <Link href={"/reset"}>Reset it here</Link>
+          </span>
+        }
       />
     </CommonForm>
   );

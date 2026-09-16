@@ -1,4 +1,4 @@
-import { patternToRegex, TEXT_PATTERN } from "@/tests/common";
+import { patternToRegex, TEXT_MATCHER, TEXT_PATTERN } from "@/tests/common";
 import { fireEvent, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect } from "vitest";
@@ -6,13 +6,18 @@ import { ToggleState } from "../types";
 
 const user = userEvent.setup();
 
-function shouldGetByText(...textes: (string | RegExp)[]) {
+function shouldGetByText(...textes: TEXT_MATCHER[]) {
   return textes.map((text) => {
-    const regex = patternToRegex(text);
-    return expect(screen.queryByText(regex));
+    if (Array.isArray(text)) {
+      const [matcher, nth] = text;
+      return expect(
+        screen.queryAllByText(patternToRegex(matcher))[nth] ?? null,
+      );
+    }
+    return expect(screen.queryByText(patternToRegex(text)));
   });
 }
-export const shouldSee = (...texts: (string | RegExp)[]) => {
+export const shouldSee = (...texts: TEXT_MATCHER[]) => {
   shouldGetByText(...texts).forEach((matcher) => matcher.toBeInTheDocument());
 };
 
@@ -64,6 +69,7 @@ export const userTypes = async (
 
   await user.clear(element);
   await user.type(element, text);
+  return element;
 };
 
 export async function userTypesMultiple(
@@ -71,9 +77,13 @@ export async function userTypesMultiple(
   container?: HTMLElement,
 ) {
   const entries = Object.entries(inputs);
+  const outputs: Record<keyof typeof inputs, HTMLElement> = {};
+
   for (const [selector, value] of entries) {
-    await userTypes(selector, value, container);
+    outputs[selector] = await userTypes(selector, value, container);
   }
+
+  return outputs;
 }
 
 function getRadioOrCheckboxAssertion(

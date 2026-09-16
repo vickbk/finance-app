@@ -2,43 +2,37 @@ import { shouldSee, userClicks, userTypesMultiple } from "@/tests";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { signup } from "../actions";
-import { SignUp } from "./SignUp";
+import { signin } from "../actions";
+import { SignIn } from "./SignIn";
 
 // Mock the signup action
 vi.mock("../actions", () => ({
-  signup: vi.fn(),
+  signin: vi.fn(),
 }));
 
-describe("SignUp Component", () => {
-  function renderSignUp(child = <></>) {
-    return render(<SignUp>{child}</SignUp>);
+describe("SignIn Component", () => {
+  function renderSignIn(child = <></>) {
+    return render(<SignIn>{child}</SignIn>);
   }
   describe("Form Structure & Field Rendering", () => {
     it("renders the form title and submit button with configured text", () => {
-      renderSignUp();
+      renderSignIn();
 
       shouldSee(
-        "sign up",
-        "name",
+        ["Login", 0],
         "email",
         ["password", 0],
-        "password must be at least 8 characters",
-        "create account",
+        "forgot password?",
+        "reset it here",
+        ["Login", 1],
       );
     });
 
     it("renders all three required input fields with correct attributes", () => {
-      renderSignUp();
+      renderSignIn();
 
-      const nameInput = screen.getByRole("textbox", { name: /name/i });
       const emailInput = screen.getByRole("textbox", { name: /email/i });
       const passwordInput = screen.getByLabelText(/password/i);
-
-      // Name field checks
-      expect(nameInput).toBeInTheDocument();
-      expect(nameInput).toHaveAttribute("name", "name");
-      expect(nameInput).toBeRequired();
 
       // Email field checks
       expect(emailInput).toBeInTheDocument();
@@ -54,10 +48,10 @@ describe("SignUp Component", () => {
     });
 
     it("renders required visual indicators (*) for all inputs", () => {
-      renderSignUp();
+      renderSignIn();
 
       const asterisks = screen.getAllByText("*");
-      expect(asterisks).toHaveLength(3);
+      expect(asterisks).toHaveLength(2);
       asterisks.forEach((asterisk) => {
         expect(asterisk).toHaveTextContent("*");
         expect(asterisk).toHaveAttribute("aria-hidden", "true");
@@ -66,7 +60,7 @@ describe("SignUp Component", () => {
 
     it("renders children correctly", () => {
       const text = "this is a child element";
-      renderSignUp(<div>{text}</div>);
+      renderSignIn(<div>{text}</div>);
       shouldSee(text);
     });
   });
@@ -74,46 +68,39 @@ describe("SignUp Component", () => {
   describe("Password Visibility Interaction", () => {
     it("allows toggling password visibility on the password field", async () => {
       const user = userEvent.setup();
-      renderSignUp();
+      renderSignIn();
 
       const passwordInput = screen.getByLabelText(/password/i);
-      const toggleButton = screen.getByRole("button", {
-        name: /show password/i,
-      });
 
       expect(passwordInput).toHaveAttribute("type", "password");
 
-      // Click to reveal password
-      await user.click(toggleButton);
-      expect(passwordInput).toHaveAttribute("type", "text");
-      expect(
-        screen.getByRole("button", { name: /hide password/i }),
-      ).toBeInTheDocument();
+      await userClicks("show password");
 
-      // Click to hide password
-      await user.click(screen.getByRole("button", { name: /hide password/i }));
+      expect(passwordInput).toHaveAttribute("type", "text");
+
+      shouldSee("hide password");
+
+      await userClicks("hide password");
+
       expect(passwordInput).toHaveAttribute("type", "password");
     });
   });
 
   describe("Form Submission & Action Invocation", () => {
     it("allows user typing and triggers signup action on submit", async () => {
-      await renderSignUp();
+      renderSignIn();
 
-      expect(screen.getByText(/name/i)).toBeInTheDocument();
-      const { name, email, password } = await userTypesMultiple({
-        name: "Jane Doe",
+      const { email, password } = await userTypesMultiple({
         email: "jane@example.com",
         password: "SecurePass123!",
       });
 
-      expect(name).toHaveValue("Jane Doe");
       expect(email).toHaveValue("jane@example.com");
       expect(password).toHaveValue("SecurePass123!");
 
-      await userClicks("create account");
+      await userClicks("Login");
 
-      expect(signup).toHaveBeenCalledTimes(1);
+      expect(signin).toHaveBeenCalledTimes(1);
     });
   });
 });
