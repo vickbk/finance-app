@@ -1,6 +1,5 @@
 import { shouldSee, userClicks, userTypesMultiple } from "@/tests";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { signin } from "../actions";
 import { SignIn } from "./SignIn";
@@ -67,21 +66,15 @@ describe("SignIn Component", () => {
 
   describe("Password Visibility Interaction", () => {
     it("allows toggling password visibility on the password field", async () => {
-      const user = userEvent.setup();
       renderSignIn();
 
       const passwordInput = screen.getByLabelText(/password/i);
-
       expect(passwordInput).toHaveAttribute("type", "password");
 
       await userClicks("show password");
-
       expect(passwordInput).toHaveAttribute("type", "text");
 
-      shouldSee("hide password");
-
       await userClicks("hide password");
-
       expect(passwordInput).toHaveAttribute("type", "password");
     });
   });
@@ -99,7 +92,6 @@ describe("SignIn Component", () => {
       expect(password).toHaveValue("SecurePass123!");
 
       await userClicks("Login");
-
       expect(signin).toHaveBeenCalledTimes(1);
     });
   });

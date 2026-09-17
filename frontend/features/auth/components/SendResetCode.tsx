@@ -24,7 +24,7 @@ export function SendResetCode({ children }: { children?: ReactNode }) {
           type: "email",
           autoComplete: "email",
         }}
-        hint={<span>We'll send a verification code to this address.</span>}
+        hint={<span>We&apos;ll send a verification code to this address.</span>}
       />
     </CommonForm>
   );

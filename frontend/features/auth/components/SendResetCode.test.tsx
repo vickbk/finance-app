@@ -19,8 +19,8 @@ describe("SendResetCode Component", () => {
       renderSendResetCode();
 
       shouldSee(
-        ["Reset password", 0],
-        ["email", 0],
+        "Reset password",
+        "email",
         "We'll send a verification code to this address.",
         "Send verification code",
       );
@@ -61,11 +61,8 @@ describe("SendResetCode Component", () => {
       renderSendResetCode();
 
       const email = await userTypes("email", "jane@example.com");
-
       expect(email).toHaveValue("jane@example.com");
-
       await userClicks("Send verification code");
-
       expect(sendResetCode).toHaveBeenCalledTimes(1);
     });
   });
