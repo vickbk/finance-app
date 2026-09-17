@@ -1,21 +1,30 @@
 import Link from "next/link";
 import { SignInWithGoogle } from "./SignInWithGoogle";
 
-export function FormFooter({
+export function AuthFooter({
   text,
   link,
-  auth20,
+  showGoogleSignIn = false,
 }: {
   text: string;
-  link?: { text: string; path: string };
-  auth20?: boolean;
+  link?: {
+    text: string;
+    path: string;
+  };
+  showGoogleSignIn?: boolean;
 }) {
   return (
-    <footer>
-      <p>
-        {text} {link && <Link href={link.path}>{link.text}</Link>}
+    <footer className={``.trim()}>
+      {showGoogleSignIn && <SignInWithGoogle />}
+
+      <p className="">
+        {text}{" "}
+        {link && (
+          <Link href={link.path} className="">
+            {link.text}
+          </Link>
+        )}
       </p>
-      {auth20 && <SignInWithGoogle />}
     </footer>
   );
 }
