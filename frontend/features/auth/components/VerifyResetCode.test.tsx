@@ -16,7 +16,7 @@ vi.mock("../actions/reset", () => ({
 describe("SendResetCode Component", () => {
   describe("Form Structure & Field Attributes", () => {
     it("renders the form title heading and submit button correctly", () => {
-      render(<VerifyResetCode />);
+      render(<VerifyResetCode id="" />);
 
       shouldSee(
         ["verify code", 0],
@@ -27,7 +27,7 @@ describe("SendResetCode Component", () => {
     });
 
     it("renders the code input field with all security and validation attributes", () => {
-      render(<VerifyResetCode />);
+      render(<VerifyResetCode id="" />);
 
       const codeInput = screen.getByLabelText(/verification code/i);
 
@@ -46,7 +46,7 @@ describe("SendResetCode Component", () => {
   describe("Dynamic Hint Rendering", () => {
     it("renders personalized email hint when email prop is provided", () => {
       const testEmail = "user@example.com";
-      render(<VerifyResetCode email={testEmail} />);
+      render(<VerifyResetCode id="" email={testEmail} />);
 
       const [hintText] = shouldSee(
         `Enter the 6-digit code sent to ${testEmail}.`,
@@ -60,7 +60,7 @@ describe("SendResetCode Component", () => {
     });
 
     it("renders generic fallback hint when email prop is omitted", () => {
-      render(<VerifyResetCode />);
+      render(<VerifyResetCode id="" />);
 
       const [hintText] = shouldSee(
         "Enter the 6-digit code sent to your email address.",
@@ -74,7 +74,7 @@ describe("SendResetCode Component", () => {
   describe("Children / Other Options Rendering", () => {
     it("renders passed children inside the form options container", () => {
       render(
-        <VerifyResetCode>
+        <VerifyResetCode id="">
           <a href="/resend-code" data-testid="resend-link">
             Didn&apos;t receive code? Resend
           </a>
@@ -88,7 +88,7 @@ describe("SendResetCode Component", () => {
 
   describe("Form Interaction & Action Triggering", () => {
     it("allows entering a 6-digit verification code and submitting the form", async () => {
-      render(<VerifyResetCode email="test@example.com" />);
+      render(<VerifyResetCode id="" email="test@example.com" />);
 
       const codeInput = await userTypes("verification code", "654321");
       expect(codeInput).toHaveValue(654321);
