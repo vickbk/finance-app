@@ -1,1 +1,3 @@
-export async function loginWithGoogle() {}
+export async function loginWithGoogle() {
+  "use server";
+}

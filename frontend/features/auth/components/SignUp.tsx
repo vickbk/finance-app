@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import { signup } from "../actions/signup";
 import { CommonForm } from "../modules/layout";

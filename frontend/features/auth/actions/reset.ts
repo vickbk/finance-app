@@ -1,7 +1,9 @@
+"use server";
+
 export async function sendResetCode(_: unknown, __: FormData) {
   return { success: true };
 }
-export async function verifyResetCode(_: unknown, __: FormData) {
+export async function verifyResetCode(_: string, __: unknown, ___: FormData) {
   return { success: true };
 }
 

@@ -6,7 +6,9 @@ import { Input } from "./Input";
 export function VerifyResetCode({
   email,
   children,
+  id,
 }: {
+  id: string;
   email?: string;
   children?: ReactNode;
 }) {
@@ -14,7 +16,7 @@ export function VerifyResetCode({
     <CommonForm
       formProps={{
         title: "Verify code",
-        action: verifyResetCode,
+        action: verifyResetCode.bind(null, id),
         submitButton: {
           text: "Verify code",
           loadingText: "Verifying code...",

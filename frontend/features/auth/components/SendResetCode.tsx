@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import { sendResetCode } from "../actions/reset";
 import { CommonForm } from "../modules/layout";

@@ -1,3 +1,5 @@
+"use client";
+
 import { BiIcon, SRHidden, SROnly } from "@/shared/utils";
 import { useInput } from "../hooks/useInput";
 import { InputParams } from "../types";
