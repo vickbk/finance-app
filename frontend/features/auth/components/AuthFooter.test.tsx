@@ -12,9 +12,14 @@ vi.mock("./SignInWithGoogle", () => ({
 }));
 
 describe("AuthFooter Component", () => {
+  async function renderAuthFooter(params: Parameters<typeof AuthFooter>[0]) {
+    const jsx = await AuthFooter(params);
+    return render(jsx);
+  }
+
   describe("DOM Structure & Semantic Landmarks", () => {
-    it("renders within a semantic footer landmark element", () => {
-      render(<AuthFooter text="Already have an account?" />);
+    it("renders within a semantic footer landmark element", async () => {
+      await renderAuthFooter({ text: "Already have an account?" });
 
       expect(screen.getByRole("contentinfo")).toBeInTheDocument();
       shouldSee("Already have an account?");
@@ -22,20 +27,18 @@ describe("AuthFooter Component", () => {
   });
 
   describe("Text and Navigation Link Rendering", () => {
-    it("renders prompt text without a link when link prop is omitted", () => {
-      render(<AuthFooter text="Already have an account?" />);
+    it("renders prompt text without a link when link prop is omitted", async () => {
+      await renderAuthFooter({ text: "Already have an account?" });
 
       shouldSee("Already have an account?");
       expect(screen.queryByRole("link")).not.toBeInTheDocument();
     });
 
-    it("renders prompt text alongside Next.js Link with correct href and attributes", () => {
-      render(
-        <AuthFooter
-          text="Don't have an account?"
-          link={{ text: "Sign up", path: "/signup" }}
-        />,
-      );
+    it("renders prompt text alongside Next.js Link with correct href and attributes", async () => {
+      await renderAuthFooter({
+        text: "Don't have an account?",
+        link: { text: "Sign up", path: "/signup" },
+      });
 
       const [, link] = shouldSee("don't have an account?", "Sign up");
 
@@ -44,22 +47,26 @@ describe("AuthFooter Component", () => {
   });
 
   describe("Google OAuth Rendering", () => {
-    it("omits Google Sign-In button by default when showGoogleSignIn is not provided", () => {
-      render(<AuthFooter text="Already have an account?" />);
+    it("omits Google Sign-In button by default when showGoogleSignIn is not provided", async () => {
+      await renderAuthFooter({ text: "Already have an account?" });
 
       shouldNotSee("Sign in with Google");
     });
 
-    it("omits Google Sign-In button when showGoogleSignIn is explicitly false", () => {
-      render(
-        <AuthFooter text="Already have an account?" showGoogleSignIn={false} />,
-      );
+    it("omits Google Sign-In button when showGoogleSignIn is explicitly false", async () => {
+      await renderAuthFooter({
+        text: "Already have an account?",
+        showGoogleSignIn: false,
+      });
 
       shouldNotSee("Sign in with Google");
     });
 
-    it("renders Google Sign-In button when showGoogleSignIn is true", () => {
-      render(<AuthFooter text="Or continue with" showGoogleSignIn={true} />);
+    it("renders Google Sign-In button when showGoogleSignIn is true", async () => {
+      await renderAuthFooter({
+        text: "Or continue with",
+        showGoogleSignIn: true,
+      });
 
       shouldSee("Sign in with Google");
     });

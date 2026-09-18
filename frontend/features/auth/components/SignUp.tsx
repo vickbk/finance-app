@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { signup } from "../actions";
+import { signup } from "../actions/signup";
 import { CommonForm } from "../modules/layout";
 import { Input } from "./Input";
 

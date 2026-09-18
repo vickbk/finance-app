@@ -2,11 +2,11 @@ import { shouldSee, userClicks, userTypesMultiple } from "@/tests";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { signup } from "../actions";
+import { signup } from "../actions/signup";
 import { SignUp } from "./SignUp";
 
 // Mock the signup action
-vi.mock("../actions", () => ({
+vi.mock("../actions/signup.ts", () => ({
   signup: vi.fn(),
 }));
 

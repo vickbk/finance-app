@@ -1,7 +1,8 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { SignInWithGoogle } from "./SignInWithGoogle";
 
-export function AuthFooter({
+export async function AuthFooter({
   text,
   link,
   showGoogleSignIn = false,
@@ -15,7 +16,11 @@ export function AuthFooter({
 }) {
   return (
     <footer className={``.trim()}>
-      {showGoogleSignIn && <SignInWithGoogle />}
+      {showGoogleSignIn && (
+        <Suspense>
+          <SignInWithGoogle />
+        </Suspense>
+      )}
 
       <p className="">
         {text}{" "}

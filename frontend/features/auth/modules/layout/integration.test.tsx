@@ -1,6 +1,7 @@
 import { shouldSee } from "@/tests";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ReactNode } from "react";
 import { Heading } from "react-heading-manager";
 import {
   checkNormalizedHeadingReport,
@@ -9,6 +10,10 @@ import {
 import { describe, expect, it } from "vitest";
 import { AuthLayout } from "./index";
 
+export async function renderAuthLayout(children: ReactNode) {
+  const jsx = await AuthLayout({ children });
+  return render(jsx);
+}
 // Simulated Real-World Login Component
 function LoginForm() {
   return (
@@ -31,12 +36,8 @@ function LoginForm() {
 }
 
 describe("AuthLayout Integration", () => {
-  it("maintains strict WCAG heading hierarchy across Layout, Illustration, and Form", () => {
-    const { container } = render(
-      <AuthLayout>
-        <LoginForm />
-      </AuthLayout>,
-    );
+  it("maintains strict WCAG heading hierarchy across Layout, Illustration, and Form", async () => {
+    const { container } = await renderAuthLayout(<LoginForm />);
 
     const region = drawRegion(container);
 
@@ -52,12 +53,8 @@ describe("AuthLayout Integration", () => {
     );
   });
 
-  it("co-locates complementary (<aside>) and form (<form>) landmarks cleanly", () => {
-    render(
-      <AuthLayout>
-        <LoginForm />
-      </AuthLayout>,
-    );
+  it("co-locates complementary (<aside>) and form (<form>) landmarks cleanly", async () => {
+    await renderAuthLayout(<LoginForm />);
 
     const complementaryLandmark = screen.getByRole("complementary");
     const mainLandmark = screen.getByRole("form");
@@ -73,11 +70,7 @@ describe("AuthLayout Integration", () => {
   it("supports seamless keyboard focus flow into child form controls", async () => {
     const user = userEvent.setup();
 
-    render(
-      <AuthLayout>
-        <LoginForm />
-      </AuthLayout>,
-    );
+    await renderAuthLayout(<LoginForm />);
 
     const emailInput = screen.getByLabelText(/email address/i);
     const passwordInput = screen.getByLabelText(/password/i);

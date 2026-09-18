@@ -1,11 +1,11 @@
 import { shouldSee, userClicks, userTypesMultiple } from "@/tests";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { signin } from "../actions";
+import { signin } from "../actions/signin";
 import { SignIn } from "./SignIn";
 
 // Mock the signup action
-vi.mock("../actions", () => ({
+vi.mock("../actions/signin.ts", () => ({
   signin: vi.fn(),
 }));
 

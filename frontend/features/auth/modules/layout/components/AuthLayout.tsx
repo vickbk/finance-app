@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { Heading } from "react-heading-manager";
 import { Illustration } from "./Illustration";
 
-export function AuthLayout({ children }: { children: ReactNode }) {
+export async function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <article>
       <Heading className="sr-only">
@@ -10,7 +10,7 @@ export function AuthLayout({ children }: { children: ReactNode }) {
       </Heading>
 
       <Illustration />
-      {children}
+      <Suspense>{children}</Suspense>
     </article>
   );
 }

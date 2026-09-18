@@ -1,6 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ReactNode } from "react";
-import { signin } from "../actions";
+import { signin } from "../actions/signin";
 import { CommonForm } from "../modules/layout";
 import { Input } from "./Input";
 
