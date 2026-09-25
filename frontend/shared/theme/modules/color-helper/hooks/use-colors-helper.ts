@@ -4,8 +4,9 @@ import {
   generateTailwindOutput,
   parseColors,
 } from "../scripts";
+import { ReturnUseColorsHelpers } from "../types";
 
-export function useColorsHelper() {
+export function useColorsHelper(): ReturnUseColorsHelpers {
   const [colors, setColors] = useState("");
   const [copiedFormat, setCopiedFormat] = useState<string | null>(null);
 
