@@ -14,6 +14,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "coverage/",
+    "playwright-report/",
+    "test-results/",
   ]),
   {
     files: ["**/*.ts", "**/*.tsx"],
@@ -70,35 +73,47 @@ const eslintConfig = defineConfig([
           default: "allow",
           policies: [
             {
-              from: { type: "feature" },
-              disallow: { to: { type: "feature" } },
+              from: { element: { type: "feature" } },
+              disallow: { to: { element: { type: "feature" } } },
               message:
                 'Cross-feature contamination: "{{from.captured.featureName}}" cannot import from "{{to.captured.featureName}}".',
             },
             {
-              from: { type: "shared" },
-              disallow: { to: { type: "shared" } },
+              from: { element: { type: "shared" } },
+              disallow: { to: { element: { type: "shared" } } },
               message:
                 'Cross-shared contamination: "{{from.captured.moduleName}}" cannot import from "{{to.captured.moduleName}}".',
             },
             {
-              from: { type: "shared" },
+              from: { element: { type: "shared" } },
               disallow: [
-                { to: { type: "feature" } },
-                { to: { type: "infra" } },
-                { to: { type: "app" } },
-                { to: { type: "tests" } },
+                { to: { element: { type: "feature" } } },
+                { to: { element: { type: "infra" } } },
+                { to: { element: { type: "app" } } },
+                { to: { element: { type: "tests" } } },
               ],
               message:
                 'Layer Violation: Foundation "shared/{{from.captured.moduleName}}" cannot depend on outer scopes.',
             },
             {
-              from: { type: "infra" },
-              disallow: [{ to: { type: "feature" } }, { to: { type: "app" } }],
+              from: { element: { type: "infra" } },
+              disallow: [
+                { to: { element: { type: "feature" } } },
+                { to: { element: { type: "app" } } },
+              ],
               message:
                 "Layer Violation: Infrastructure elements cannot depend on domain features or application roots.",
             },
           ],
+        },
+      ],
+
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
         },
       ],
     },

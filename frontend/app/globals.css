@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../features/auth/styles.css";
 
 :root {
   --background: #ffffff;
