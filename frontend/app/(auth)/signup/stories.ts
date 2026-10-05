@@ -5,12 +5,11 @@ import {
 import { shouldSee } from "@/tests/playwright";
 import { Page } from "@playwright/test";
 import { shouldHaveTitleAndContent } from "../stories";
-import { metadata } from "./page";
 
 export async function shouldGotoSignupPage(page: Page) {
   await page.goto("/signup");
 
-  await shouldHaveTitleAndContent(page, metadata.title as string);
+  await shouldHaveTitleAndContent(page, "Create an account");
 
   await shouldSeeSignupFormContent(page);
   await shouldSeeGoogleSignIn(page);
