@@ -3,8 +3,9 @@ import { MenueItem } from "./MenueItem";
 
 export function ToggleButton() {
   return (
-    <button type="button">
+    <label className="menue__toggler">
       <MenueItem icon={MinimizeMenueIcon} text={"Minimize Menu"} />
-    </button>
+      <input type="checkbox" className="sr-only menue__controller" />
+    </label>
   );
 }
