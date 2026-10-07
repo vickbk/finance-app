@@ -1,16 +1,17 @@
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import Image from "next/image";
+import type { ComponentType } from "react";
 
 export function MenueItem({
   icon,
   text,
 }: {
-  icon: StaticImport;
+  icon: ComponentType;
   text: string;
 }) {
+  const Icon = icon;
+
   return (
     <>
-      <Image src={icon} alt="" width={24} height={24} /> {text}
+      <Icon /> {text}
     </>
   );
 }

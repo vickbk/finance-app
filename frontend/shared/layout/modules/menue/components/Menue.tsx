@@ -1,9 +1,9 @@
 import Link from "next/link";
-import BudgetsIcon from "../assets/icon-nav-budgets.svg";
-import OverviewIcon from "../assets/icon-nav-overview.svg";
-import PotsIcon from "../assets/icon-nav-pots.svg";
-import RecuringIcon from "../assets/icon-nav-recurring-bills.svg";
-import TransactionsIcon from "../assets/icon-nav-transactions.svg";
+import { OverviewIcon } from "./icons/OverviewIcon";
+import { BudgetsIcon } from "./icons/BudgetsIcon";
+import { PotsIcon } from "./icons/PotsIcon";
+import { RecurringBillsIcon } from "./icons/RecurringBillsIcon";
+import { TransactionsIcon } from "./icons/TransactionsIcon";
 import { MenueItem } from "./MenueItem";
 
 export function Menue() {
@@ -15,7 +15,7 @@ export function Menue() {
         { icon: BudgetsIcon, path: "/budgets" },
         { icon: PotsIcon, path: "/pots" },
         {
-          icon: RecuringIcon,
+          icon: RecurringBillsIcon,
           path: "/recurring-bills",
           text: "Recurring Bills",
         },

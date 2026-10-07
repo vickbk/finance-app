@@ -1,10 +1,11 @@
 import { MainMenue } from "@/shared/layout";
-import { Main } from "react-heading-manager";
+import { ReactNode } from "react";
 
-export default function MainLayout() {
+export default function MainLayout({ children }: { children: ReactNode }) {
   return (
-    <Main>
+    <>
       <MainMenue />
-    </Main>
+      {children}
+    </>
   );
 }

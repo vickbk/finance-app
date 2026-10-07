@@ -1,10 +1,10 @@
-import icon from "../assets/icon-nav-minimize.svg";
+import { MinimizeMenueIcon } from "./icons/MinimizeMenueIcon";
 import { MenueItem } from "./MenueItem";
 
 export function ToggleButton() {
   return (
     <button type="button">
-      <MenueItem icon={icon} text={"Minimize Menu"} />
+      <MenueItem icon={MinimizeMenueIcon} text={"Minimize Menu"} />
     </button>
   );
 }

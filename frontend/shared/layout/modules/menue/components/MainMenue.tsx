@@ -2,14 +2,20 @@ import { Heading } from "react-heading-manager";
 import { Menue } from "./Menue";
 import { ToggleButton } from "./ToggleButton";
 
-export function MainMenue() {
+export function MainMenue({ children }: { children?: React.ReactNode }) {
   return (
     <nav aria-describedby="main-menu">
       <Heading id="main-menu">
-        Finance <span className="sr-only">App</span>
+        <span>
+          Finance <span className="sr-only">App</span>
+        </span>
+        <span aria-hidden>f</span>
       </Heading>
       <Menue />
-      <ToggleButton />
+      <div>
+        {children}
+        <ToggleButton />
+      </div>
     </nav>
   );
 }
