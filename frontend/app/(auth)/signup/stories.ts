@@ -2,8 +2,8 @@ import {
   shouldSeeGoogleSignIn,
   shouldSeeSignupFormContent,
 } from "@/features/auth/__testing__";
-import { shouldSee } from "@/tests/playwright";
 import { Page } from "@playwright/test";
+import { shouldSee } from "@vickbk/tests/playwright";
 import { shouldHaveTitleAndContent } from "../stories";
 
 export async function shouldGotoSignupPage(page: Page) {

@@ -1,6 +1,6 @@
 import { shouldSeeVerifyCodeFormContent } from "@/features/auth/__testing__";
-import { shouldSee } from "@/tests/playwright";
 import { Page } from "@playwright/test";
+import { shouldSee } from "@vickbk/tests/playwright";
 import { shouldHaveTitleAndContent } from "../../stories";
 
 export async function shouldGotoVerifyCodePage(page: Page) {

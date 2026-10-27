@@ -1,5 +1,5 @@
-import { shouldSee } from "@/tests/playwright";
 import { Page } from "@playwright/test";
+import { shouldSee } from "@vickbk/tests/playwright";
 
 export async function shouldSeeLayoutContent(page: Page) {
   await shouldSee(
