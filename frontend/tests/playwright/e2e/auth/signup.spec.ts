@@ -1,7 +1,7 @@
 import { shouldGotoSignupPage } from "@/app/(auth)/signup/stories";
-import { runSimilarTests } from "@/tests/playwright/utils/dsl";
 import { test } from "@playwright/test";
+import { runSimilarTests } from "@vickbk/tests/playwright";
 
 test.describe("Sign up tests", () => {
-  runSimilarTests([["should go to signup page", shouldGotoSignupPage]]);
+  runSimilarTests(["should go to signup page", shouldGotoSignupPage]);
 });

@@ -1,9 +1,7 @@
 import { shouldGotoVerifyCodePage } from "@/app/(auth)/verify-code/[id]/stories";
-import { runSimilarTests } from "@/tests/playwright/utils/dsl";
 import { test } from "@playwright/test";
+import { runSimilarTests } from "@vickbk/tests/playwright";
 
 test.describe("Verify code tests", () => {
-  runSimilarTests([
-    ["should go to Verify code page", shouldGotoVerifyCodePage],
-  ]);
+  runSimilarTests(["should go to Verify code page", shouldGotoVerifyCodePage]);
 });
