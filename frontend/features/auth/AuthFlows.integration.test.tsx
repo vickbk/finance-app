@@ -2,7 +2,12 @@ import { screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 // Imports strictly through the barrel file
-import { shouldSee, userClicks, userTypes, userTypesMultiple } from "@/tests";
+import {
+  shouldSee,
+  userClicks,
+  userTypes,
+  userTypesMultiple,
+} from "@vickbk/tests/vitest";
 import { act } from "react";
 import {
   AuthFooter,

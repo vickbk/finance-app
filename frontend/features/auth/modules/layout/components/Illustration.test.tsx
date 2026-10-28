@@ -1,5 +1,5 @@
-import { shouldSee } from "@/tests";
 import { render, screen } from "@testing-library/react";
+import { shouldSee } from "@vickbk/tests/vitest";
 import { describe, expect, it } from "vitest";
 import { Illustration } from "./Illustration";
 

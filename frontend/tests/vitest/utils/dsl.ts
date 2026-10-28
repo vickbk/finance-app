@@ -1,6 +1,6 @@
-import { patternToRegex, TEXT_MATCHER, TEXT_PATTERN } from "@/tests/common";
 import { fireEvent, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { patternToRegex, TEXT_MATCHER, TEXT_PATTERN } from "@vickbk/tests";
 import { expect } from "vitest";
 import { ToggleState } from "../types";
 

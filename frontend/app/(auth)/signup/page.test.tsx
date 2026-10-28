@@ -2,8 +2,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import { AuthLayout } from "@/features/auth";
-import { shouldSee, userClicks, userTypesMultiple } from "@/tests";
 import { resolveRscTree } from "@vickbk/tests/react";
+import { shouldSee, userClicks, userTypesMultiple } from "@vickbk/tests/vitest";
 import Page from "./page";
 
 // Mock the server action invoked on registration form submission

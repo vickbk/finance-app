@@ -2,7 +2,7 @@ import path from "node:path";
 import process from "node:process";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { shutConsole } from "@/tests";
+import { shutConsole } from "@vickbk/tests/vitest";
 
 const postReadmeSpy = vi.fn();
 

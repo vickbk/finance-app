@@ -1,5 +1,5 @@
-import { shouldNotSee, shouldSee } from "@/tests";
 import { render, screen } from "@testing-library/react";
+import { shouldNotSee, shouldSee } from "@vickbk/tests/vitest";
 import { describe, expect, it } from "vitest";
 import { FormResponseManager } from "./FormResponseManager";
 

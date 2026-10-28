@@ -1,11 +1,11 @@
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {
   shouldHaveAttributes,
   shouldSee,
   userClicks,
   userTypesMultiple,
-} from "@/tests";
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+} from "@vickbk/tests/vitest";
 import { describe, expect, it, vi } from "vitest";
 import { resetPassword } from "../actions/reset";
 import { ResetPassword } from "./ResetPassword";

@@ -1,6 +1,6 @@
-import { shouldSee, userClicks } from "@/tests";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { shouldSee, userClicks } from "@vickbk/tests/vitest";
 import { describe, expect, it, vi } from "vitest";
 import { CommonFormAction, FormProps } from "../types";
 import { CommonForm } from "./CommonForm";

@@ -1,7 +1,7 @@
 import { loginWithGoogle } from "@/infra/auth";
-import { shouldNotSee, shouldSee } from "@/tests";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { shouldNotSee, shouldSee } from "@vickbk/tests/vitest";
 import { describe, expect, it, vi } from "vitest";
 import { SignInWithGoogle } from "./SignInWithGoogle";
 

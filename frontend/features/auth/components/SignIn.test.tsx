@@ -1,5 +1,5 @@
-import { shouldSee, userClicks, userTypesMultiple } from "@/tests";
 import { render, screen } from "@testing-library/react";
+import { shouldSee, userClicks, userTypesMultiple } from "@vickbk/tests/vitest";
 import { describe, expect, it, vi } from "vitest";
 import { signin } from "../actions/signin";
 import { SignIn } from "./SignIn";

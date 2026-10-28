@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { shouldSee } from "@/tests";
+import { shouldSee } from "@vickbk/tests/vitest";
 import type { ParsedColor } from "../types";
 import ParsedColors from "./ParsedColors";
 

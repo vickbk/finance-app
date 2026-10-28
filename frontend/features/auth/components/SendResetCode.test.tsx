@@ -1,5 +1,5 @@
-import { shouldSee, userClicks, userTypes } from "@/tests";
 import { render, screen } from "@testing-library/react";
+import { shouldSee, userClicks, userTypes } from "@vickbk/tests/vitest";
 import { ReactNode } from "react";
 import { describe, expect, it, vi } from "vitest";
 import { sendResetCode } from "../actions/reset";

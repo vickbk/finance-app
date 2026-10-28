@@ -1,5 +1,5 @@
-import { shouldNotSee, shouldSee } from "@/tests";
 import { render, screen } from "@testing-library/react";
+import { shouldNotSee, shouldSee } from "@vickbk/tests/vitest";
 import { describe, expect, it, vi } from "vitest";
 import { AuthFooter } from "./AuthFooter";
 

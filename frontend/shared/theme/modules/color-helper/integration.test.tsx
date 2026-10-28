@@ -1,8 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { userClicks, userTypes } from "@/tests";
-import { shouldNotSee, shouldSee } from "./__testing__/heplers";
+import {
+  shouldNotSee,
+  shouldSee,
+  userClicks,
+  userTypes,
+} from "@vickbk/tests/vitest";
 import { ColorsHelper } from "./index";
 
 describe("ColorsHelper Integration Component", () => {

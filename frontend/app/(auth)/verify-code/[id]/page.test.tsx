@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { describe, expect, it, vi } from "vitest";
 
 import { AuthLayout } from "@/features/auth";
-import { shouldSee, userClicks, userTypes } from "@/tests";
 import { resolveRscTree } from "@vickbk/tests/react";
+import { shouldSee, userClicks, userTypes } from "@vickbk/tests/vitest";
 import Page from "./page";
 
 // Mock next/navigation redirect hook

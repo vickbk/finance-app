@@ -1,4 +1,4 @@
-import { shutConsole } from "@/tests";
+import { shutConsole } from "@vickbk/tests/vitest";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const postCoverageMock = vi.fn();

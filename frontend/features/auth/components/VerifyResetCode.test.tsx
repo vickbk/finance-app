@@ -1,10 +1,10 @@
+import { render, screen, waitFor } from "@testing-library/react";
 import {
   shouldHaveAttributes,
   shouldSee,
   userClicks,
   userTypes,
-} from "@/tests";
-import { render, screen, waitFor } from "@testing-library/react";
+} from "@vickbk/tests/vitest";
 import { describe, expect, it, vi } from "vitest";
 import { verifyResetCode } from "../actions/reset";
 import { VerifyResetCode } from "./VerifyResetCode";
