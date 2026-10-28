@@ -2,7 +2,6 @@ import "@testing-library/jest-dom/vitest";
 import { resetConsole } from "@vickbk/tests/vitest";
 import { setupServer } from "msw/node";
 import { afterAll, afterEach, beforeAll } from "vitest";
-import "./utils/toggle-event";
 
 export const server = setupServer();
 
