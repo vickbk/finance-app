@@ -114,3 +114,76 @@
   - **Steps**:
     - [x] Configure `next.config.mjs` for security headers and build optimizations
     - [x] Execute trial production build (`pnpm build`) to verify bundle compilation
+
+## Raw UI Implementation
+
+- [x] **Authentication UI & Routing**
+- **Status**: ✅ Done
+- **Target**: 2026-09-15
+- **Description**: Build accessible views and routing structure for user authentication including Signup, Login, and Google OAuth flows.
+- **Steps**:
+  - [x] Implement Signup HTML view and form layout
+  - [x] Implement Login HTML view and form layout
+  - [x] Implement "Continue with Google" OAuth button & callback state view
+  - [x] Implement Send reset code form layout
+  - [x] Implement Verify code form layout
+  - [x] Implement Reset password form layout
+  - [x] Wire routes for `/login`, `/signup`, and `/auth/callback`
+
+- [ ] **Navigation & Header Components**
+- **Status**: 🚧 In Progress
+- **Target**: 2026-10-15
+- **Description**: Build accessible responsive navigation bars, menus, and breadcrumbs supporting desktop and mobile viewports with keyboard and screen reader accessibility.
+- **Steps**:
+  - [ ] Implement responsive desktop navigation bar layout and links
+  - [ ] Implement mobile slide-out drawer or hamburger menu with focus trapping
+  - [ ] Add active route indicator states and ARIA attributes
+  - [ ] Implement breadcrumb navigation component with WCAG 1.3.1 heading hierarchy
+  - [ ] Write unit and accessibility tests for keyboard navigation and screen reader announcements
+
+- [ ] **Transactions Domain UI & Routing**
+- **Status**: ⏳ Todo
+- **Target**: 2026-09-22
+- **Description**: Build complete HTML views, table layout, search/filter controls, and route definitions for transaction management.
+- **Steps**:
+  - [ ] Build Transactions list table structure with pagination UI
+  - [ ] Build transaction filter, search, and sort form controls
+  - [ ] Implement Add/Edit Transaction modal dialog views
+  - [ ] Wire route definitions for `/transactions`
+
+- [ ] **Budgets Domain UI & Routing**
+- **Status**: ⏳ Todo
+- **Target**: 2026-09-29
+- **Description**: Build category spending cards, progress summaries, and route definitions for budget tracking.
+- **Steps**:
+- [ ] Implement Budget category card grid & spending breakdown views
+- [ ] Build Create/Edit/Delete Budget modal dialog views
+- [ ] Wire route definitions for `/budgets`
+
+- [ ] **Savings Pots Domain UI & Routing**
+- **Status**: ⏳ Todo
+- **Target**: 2026-10-06
+- **Description**: Build card grid layouts, progress indicators, and route definitions for savings pots.
+- **Steps**:
+- [ ] Build Savings Pots card grid layout
+- [ ] Implement Add Money / Withdraw Money modal form views
+- [ ] Build Create/Edit Pot modal views
+- [ ] Wire route definitions for `/pots`
+
+- [ ] **Recurring Bills Domain UI & Routing**
+- **Status**: ⏳ Todo
+- **Target**: 2026-10-13
+- **Description**: Build total summary stat cards, bills list layout, and route definitions for recurring bills.
+- **Steps**:
+- [ ] Build Recurring Bills summary card & list table views
+- [ ] Implement bill search, filter, and sorting UI controls
+- [ ] Wire route definitions for `/recurring-bills`
+
+- [ ] **Overview Dashboard & Application Shell**
+- **Status**: ⏳ Todo
+- **Target**: 2026-10-20
+- **Description**: Assemble the global layout shell, navigation bar/sidebar, and consolidated dashboard summary.
+- **Steps**:
+- [ ] Implement shared application shell (sidebar, top bar, mobile navigation)
+- [ ] Assemble Overview summary page referencing widgets from all domains
+- [ ] Wire root `/` dashboard route and active state navigation links

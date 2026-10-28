@@ -8,15 +8,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noemit",
     "test": "vitest",
     "test:run": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "coverage-summary": "tsx ./bin/coverage-summary",
+    "coverage-comment": "tsx ./bin/post-vitest-coverage",
+    "readme-check": "tsx ./bin/documentation/readme-check.ts",
+    "readme-comment": "tsx ./bin/documentation/post-readme-comment.ts"
   },
   "dependencies": {
     "next": "^16.4.2",
     "postcss": "^8.5.31",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "react-heading-manager": "^0.3.0",
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.7"
   },
@@ -29,6 +35,8 @@
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@vickbk/ci-tools": "^0.1.2",
+    "@vickbk/tests": "^0.1.0",
     "@vitejs/plugin-react": "^6.1.2",
     "@vitest/coverage-v8": "^5.0.5",
     "eslint": "^9.39.5",
@@ -36,6 +44,7 @@
     "eslint-plugin-boundaries": "^7.2.0",
     "happy-dom": "^21.0.3",
     "msw": "^3.0.3",
+    "tsx": "^4.23.13",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.0",
     "vitest": "^5.0.5"
