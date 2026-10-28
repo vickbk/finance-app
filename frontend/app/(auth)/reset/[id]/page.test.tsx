@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { AuthLayout } from "@/features/auth";
 import { shouldSee, userClicks, userTypesMultiple } from "@/tests";
-import { resolveRscTree } from "@/tests/vitest";
+import { resolveRscTree } from "@vickbk/tests/react";
 import Page from "./page";
 
 // Mock next/navigation redirect hook

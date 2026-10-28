@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { AuthLayout } from "@/features/auth";
 import { shouldSee, userClicks, userTypes } from "@/tests";
-import { resolveRscTree } from "@/tests/vitest";
+import { resolveRscTree } from "@vickbk/tests/react";
 import Page from "./page";
 
 // Mock the server action invoked when requesting a password reset code
