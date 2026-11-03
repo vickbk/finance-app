@@ -130,16 +130,16 @@
   - [x] Implement Reset password form layout
   - [x] Wire routes for `/login`, `/signup`, and `/auth/callback`
 
-- [ ] **Navigation & Header Components**
-- **Status**: 🚧 In Progress
-- **Target**: 2026-10-15
+- [x] **Navigation & Header Components**
+- **Status**: ✅ Done
+- **Target**: 2026-11-03
 - **Description**: Build accessible responsive navigation bars, menus, and breadcrumbs supporting desktop and mobile viewports with keyboard and screen reader accessibility.
 - **Steps**:
-  - [ ] Implement responsive desktop navigation bar layout and links
-  - [ ] Implement mobile slide-out drawer or hamburger menu with focus trapping
-  - [ ] Add active route indicator states and ARIA attributes
-  - [ ] Implement breadcrumb navigation component with WCAG 1.3.1 heading hierarchy
-  - [ ] Write unit and accessibility tests for keyboard navigation and screen reader announcements
+  - [x] Implement responsive desktop navigation bar layout and links
+  - [x] Implement mobile slide-out drawer or hamburger menu with focus trapping
+  - [x] Add active route indicator states and ARIA attributes
+  - [-] Implement breadcrumb navigation component with WCAG 1.3.1 heading hierarchy
+  - [x] Write unit and accessibility tests for keyboard navigation and screen reader announcements
 
 - [ ] **Transactions Domain UI & Routing**
 - **Status**: ⏳ Todo
