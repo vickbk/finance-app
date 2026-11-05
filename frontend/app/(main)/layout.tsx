@@ -1,10 +1,14 @@
-import { MainMenue } from "@/shared/layout";
+import { MainMenue, MenueItem } from "@/shared/layout";
 import { ReactNode } from "react";
 
 export default function MainLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <MainMenue />
+      <MainMenue>
+        <button type="button">
+          <MenueItem text="Light theme" icon={() => <span>☀️</span>} />
+        </button>
+      </MainMenue>
       {children}
     </>
   );
