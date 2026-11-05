@@ -26,11 +26,11 @@ export function MainContainer({
             >
               {action.name}
             </button>
-            <dialog id="content-dialog">{action.dialog}</dialog>
           </>
         )}
       </header>
-      <Section aria-label="Content">{children}</Section>
+      {children}
+      {action && <dialog id="content-dialog">{action.dialog}</dialog>}
     </Section>
   );
 }

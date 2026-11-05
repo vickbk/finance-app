@@ -32,20 +32,14 @@ describe("MainContainer", () => {
 
     // Outer section checks for aria-describedby pointing to the heading ID
     const sections = container.querySelectorAll("section");
-    expect(sections.length).toBeGreaterThanOrEqual(2);
+    expect(sections.length).toBeGreaterThanOrEqual(1);
 
     const outerSection = sections[0];
     expect(outerSection).toHaveAttribute("aria-describedby", "content-heading");
-
-    // Inner section checks for aria-label="Content"
-    const innerSection = screen.getByRole("region", { name: "Content" });
-    expect(innerSection).toBeInTheDocument();
   });
 
   it("renders an action button and triggers onClick when clicked", async () => {
-    const user = userEvent.setup();
-
-    render(
+    const { container } = render(
       <MainContainer
         title="Transactions"
         action={{ name: "+ Add Transaction" }}
@@ -56,7 +50,9 @@ describe("MainContainer", () => {
 
     await userClicks("+ Add Transaction");
 
-    // expect(handleClick).toHaveBeenCalledTimes(1);
+    const dialog = container.querySelector("dialog");
+    expect(dialog).toBeInTheDocument();
+    expect(dialog?.open).toBe(true);
   });
 
   it("renders dialog content encapsulated within the action object when provided", () => {
@@ -66,7 +62,7 @@ describe("MainContainer", () => {
         action={{
           name: "Create Budget",
 
-          dialog: <div role="dialog">Budget Creation Modal</div>,
+          dialog: <div>Budget Creation Modal</div>,
         }}
       >
         <p>Budget summary</p>
@@ -76,13 +72,13 @@ describe("MainContainer", () => {
     shouldSee("Budgets", "Budget summary", "Budget Creation Modal");
     const dialog = container.querySelector("dialog");
     expect(dialog).toBeInTheDocument();
+    expect(dialog?.open).toBe(false);
   });
 
   it("allows keyboard focus and activation of the action button", async () => {
     const user = userEvent.setup();
-    // const handleClick = vi.fn();
 
-    render(
+    const { container } = render(
       <MainContainer title="Savings Pots" action={{ name: "Add Pot" }}>
         <p>Pots summary</p>
       </MainContainer>,
@@ -93,7 +89,10 @@ describe("MainContainer", () => {
     expect(document.activeElement).toBe(actionButton);
 
     await user.keyboard("{Enter}");
-    // expect(handleClick).toHaveBeenCalledTimes(1);
+
+    const dialog = container.querySelector("dialog");
+    expect(dialog).toBeInTheDocument();
+    expect(dialog?.open).toBe(true);
   });
 
   it("renders complex children correctly", () => {
