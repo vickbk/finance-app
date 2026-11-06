@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TransactionsIcon > renders the expected SVG structure 1`] = `
+{
+  "attributes": {
+    "fill": "none",
+    "height": "18",
+    "viewBox": "0 0 18 18",
+    "width": "18",
+  },
+  "paths": 1,
+}
+`;

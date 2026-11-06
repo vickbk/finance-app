@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MinimizeMenueIcon > renders the expected SVG structure 1`] = `
+{
+  "attributes": {
+    "fill": "none",
+    "height": "20",
+    "viewBox": "0 0 20 20",
+    "width": "20",
+  },
+  "paths": 1,
+}
+`;
