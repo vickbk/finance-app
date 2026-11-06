@@ -9,9 +9,9 @@ export default function OverviewPage() {
           { title: "Total Balance", value: "$45,231.89", isdarkmode: true },
           { title: "Income", value: "$12,450.00" },
           { title: "Expenses", value: "$3,120.00" },
-        ].map(({ title, value, isdarkmode }, index) => (
+        ].map(({ title, value, isdarkmode }) => (
           <SummaryCard
-            key={index}
+            key={title}
             title={title}
             value={value}
             isdarkmode={isdarkmode}

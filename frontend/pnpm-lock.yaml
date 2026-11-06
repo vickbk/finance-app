@@ -58,8 +58,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       '@vickbk/tests':
-        specifier: ^0.2.3
-        version: 0.2.3(@playwright/test@1.64.1)(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.5))(@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@testing-library/user-event@14.6.8(@testing-library/dom@10.4.2))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@5.0.5)
+        specifier: ^0.2.4
+        version: 0.2.4(@playwright/test@1.64.1)(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.5))(@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@testing-library/user-event@14.6.8(@testing-library/dom@10.4.2))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@5.0.5)
       '@vitejs/plugin-react':
         specifier: ^6.1.2
         version: 6.2.1(vite@8.3.5(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
@@ -1172,8 +1172,8 @@ packages:
     resolution: {integrity: sha512-8d6CRThWTzk00j1iTL8HJkTIHXzaqZtd7R4t4j4X9CU35BaCwvnr6NgJ3Lb5szVJmgG4Ov+RkrMqswvRiL5L5Q==}
     engines: {node: '>=20'}
 
-  '@vickbk/tests@0.2.3':
-    resolution: {integrity: sha512-yjKdz/xSrupLE4lvjB68izeBp/WnDU3R5z2LFnFyWSjuBirSDlUZV2jJPBGzobN43x5SFx5jQhZKOpACg8u5Nw==}
+  '@vickbk/tests@0.2.4':
+    resolution: {integrity: sha512-bUXG3r2WCc+9v9mOkRHaZjq0M/CBucxK8Qq3szFr0jn8DtEEpNy5myF55TrAHzNH6ezoef2XDjNEhbvParLB7w==}
     engines: {node: '>=20'}
     peerDependencies:
       '@playwright/test': ^1.64.1
@@ -3861,7 +3861,7 @@ snapshots:
     dependencies:
       zod: 4.6.7
 
-  '@vickbk/tests@0.2.3(@playwright/test@1.64.1)(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.5))(@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@testing-library/user-event@14.6.8(@testing-library/dom@10.4.2))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@5.0.5)':
+  '@vickbk/tests@0.2.4(@playwright/test@1.64.1)(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.5))(@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@testing-library/user-event@14.6.8(@testing-library/dom@10.4.2))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(vitest@5.0.5)':
     optionalDependencies:
       '@playwright/test': 1.64.1
       '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.5)
